@@ -6,7 +6,7 @@ It can be used as a template for implementing the InnerSource Commons [InnerSour
 
 ## Demo 
 
-A running instance of the portal can be found [here](https://pages.github.com/sap/project-portal-for-innersource).
+A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/).
 
 > **Note:** The portal can also be seen in action in the InnerSourceCommons Fall Summit 2020 session [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo&list=PLCH-i0B0otNQZQt_QzGR9Il_kE4C6cQRy&index=6).
 
