@@ -1,0 +1,560 @@
+/*** Header ***/
+
+/* logo alignment */
+nav .brand-logo.logo {
+  padding: 1rem;
+  margin-left: 10px;
+}
+
+/* fixed height for nav bar */
+nav {
+  height: 84px !important;
+}
+
+/* adjust title text size to nav bar */
+.brand-logo {
+  font-weight: bold;
+  line-height: 1.8;
+}
+
+/* adjust subheader text size to nav bar */
+#header-text {
+  display: block;
+  line-height: 10px;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* emphasize project counter */
+#count {
+  font-weight: bold;
+}
+
+/*** Cards ***/
+
+/* less padding for cards */
+.card-content {
+  padding-bottom: 0.5rem !important;
+  padding-top: 1rem !important;
+}
+
+/* increase card title size and truncation */
+.card-title {
+  margin-top: 10px;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 25px !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+
+/* truncate description after 4 lines (webkit) */
+.card-description {
+  overflow-wrap: break-word;
+  overflow: hidden;
+  height: 6rem;
+  display: -webkit-box;
+  word-break: break-word;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0.5rem;
+}
+
+/* center image */
+.card-media {
+  text-align: center;
+  display: block;
+  height: 65px;
+}
+
+/* align repo logo with card */
+.card-media img {
+  max-height: 120px;
+  max-width: 100%;
+  height: 70px;
+  vertical-align: middle;
+}
+
+/* adjust link size and truncate text */
+.repoLink {
+  font-weight: normal;
+  font-size: 65%;
+  line-height: 20px;
+  white-space: nowrap;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* underline card links */
+.repoLink a:hover,
+.card-action a:hover {
+  text-decoration: underline;
+}
+
+/* fix: don't enable wrapping on hover */
+.card:hover .card-title {
+    white-space: normal;
+    text-overflow: inherit;
+    overflow: auto;
+}
+
+/* remove padding from action container and emphasize links */
+.modal .card-action,
+.card .card-action {
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* link spans across full action area to be easily clickable */
+.card-action a {
+  margin-right: 0 !important;
+  display: block;
+  padding: 10px 24px !important;
+}
+
+/* defaults and paddings for icon container */
+.icon-container {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  color: #444;
+}
+
+/* equally span icons across available space */
+.icon-container > div,
+td > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* make images same size as other icons */
+.icon-container img {
+  width: 2rem;
+  min-height: 2rem;
+}
+
+/* programming language indicator */
+.icon-container .language,
+li .language,
+td .language{
+  background-color: #444;
+  color: white;
+  border-radius: 1rem;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  text-align: center;
+  min-width: 30px !important;
+}
+
+/* styles for language indicator in filter bar */
+li .language {
+  float: right;
+  margin: 0.5rem;
+  margin-right: 1rem;
+}
+
+/* center switch */
+.switch.icons {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* reduce width of switch with icons */
+.switch.icons .lever {
+  margin: 0 4px;
+  margin-top: 0.5rem;
+  vertical-align: top;
+}
+
+/* define an active icon color for a two-option switch */
+.switch .material-icons.active {
+  color: #2196F3;
+}
+
+/* override switch lever active color */
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: rgba(0,0,0,0.38);
+}
+
+/* override switch handle active color */
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: #F1F1F1;
+}
+
+/* override switch active color */
+.switch label input[type=checkbox]:checked+.lever:before {
+  background-color: rgba(3,155,229,0.15);
+}
+
+/* make icon titles same width as icons */
+.icon-subtitle {
+  display: block;
+}
+
+/*** Participation Stats ***/
+
+/* scale stats with the dialog size */
+.participationChart {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* larger current week box */
+.participationChart .thisWeek {
+  display: inline-block;
+  background-color: #eee;
+  border: 1px solid #bbb;
+  border-radius: 1rem;
+  width: 42%;
+  padding-top: 42%;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  float: left;
+}
+
+/* smaller previous week boxes */
+.participationChart .previousWeeks {
+  display: inline-block;
+  background-color: #eee;
+  border: 1px solid #bbb;
+  border-radius: 1rem;
+  width: calc(14% - 0.55rem);
+  padding-top: calc(14% - 0.55rem);
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+}
+
+.participationChart .previousMonths {
+  display: inline-block;
+  background-color: #eee;
+  border: 1px solid #bbb;
+  font-size: 75%;
+  border-radius: 0.35rem;
+  width: calc(5.25% - 0.55rem);
+  padding-top: calc(5.25% - 0.55rem);
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+}
+
+/* reduce border for monthly stats */
+.participationChart .previousMonths.hasCommits {
+    border-width: 1.5px;
+}
+
+/* hide monthly stats on very small screens */
+@media only screen and (max-width: 600px) {
+  .participationChart .previousMonths {
+    display: none;
+  }
+}
+
+/* highlight weeks with commits */
+.participationChart .hasCommits {
+  border-color: #28a428;
+  border-width: 2px;
+}
+
+/* default text for weekly commits */
+.participationChart .text {
+  position: absolute;
+  color: #555;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 0;
+  text-align: center;
+}
+
+/* larger text for this week */
+.participationChart .thisWeek .text {
+  font-size: 200%;
+}
+
+/* active commits text */
+.participationChart .hasCommits .text {
+  font-weight: bold;
+  color: #000;
+}
+
+/* legend for the activity heatmap */
+.participationChart .legend {
+  clear: both;
+  width: 100%;
+  text-align: center;
+}
+
+/* below current week box */
+.participationChart .thisWeekLegend {
+  width: 42%;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* below previous weeks boxes */
+.participationChart .previousWeeksLegend {
+  width: calc(58% - 1rem);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/*** Details Modal ***/
+
+/* logo and icons */
+.modal aside {
+  width: 33%;
+  position: absolute;
+}
+
+/* details and stats */
+.modal article {
+  width: calc(66% - 1rem);
+  margin-left: calc(33% + 3rem);
+  min-height: 385px;
+  overflow-x: hidden;
+}
+
+/* reserve some space for the logo */
+.modal .card-media {
+  text-align: left;
+  height: 300px;
+  margin-bottom: 1rem;
+}
+
+/* larger logo for details */
+.modal .card-media img {
+  max-height: 100%;
+  max-width: 100%;
+  height: initial;
+}
+
+/* display icons below logo */
+.modal .icon-container {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* larger repo link for details */
+.modal .repoLink {
+  font-size: 125%;
+}
+
+/* end modal content with footer */
+.modal .modal-footer {
+  clear: both;
+  height: inherit;
+  padding: 0;
+}
+
+/* move close button to upper right corner */
+.modal .modal-close {
+  border-radius: 100px;
+  border: 2px solid #1E88E5;
+  font-weight: bold;
+  line-height: 30px;
+  padding: 0 12px;
+  background: #DEDEDE;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-stretch: expanded;
+  text-transform: inherit;
+}
+
+/* use original image height in modal */
+.modal .card-media {
+  height: initial;
+  text-align: center;
+}
+
+/* scale table to 100% width */
+table.list {
+  display: table !important;
+  width: 100%;
+}
+
+/* center logo and action table heading */
+table.list th:nth-child(1),
+table.list th:nth-last-child(1) {
+  text-align: center;
+}
+
+/* use original image width in table */
+table.list td .card-media img {
+  max-width: initial;
+}
+
+/* normal repo link for table */
+table.list td .repoLink {
+  font-size: 100%;
+  white-space: initial;
+}
+
+/* round corners for contribute link in table */
+table.list td .card-action:last-child {
+  border-radius: 12px;
+}
+
+
+/* optimize description in list view */
+table.list td .card-description {
+  height: inherit;
+  margin: 0;
+}
+
+/* hide columns with this class on phone */
+@media only screen and (max-width: 800px) {
+  table.list .hidePhone {
+    display: none;
+  }
+}
+
+/* hide columns with this class on tablet */
+@media only screen and (max-width: 1200px) {
+  table.list .hideTablet {
+    display: none;
+  }
+}
+
+/* adjust materialize modal dimensions */
+.modal {
+  max-height: 80%;
+}
+
+@media only screen and (max-width: 1500px) {
+  .modal {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal {
+    width: 80%;
+    max-height: 80%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .modal {
+    width: 90%;
+    max-height: 90%;
+    top: 5% !important;
+  }
+}
+
+/* responsive modal for phones */
+@media only screen and (max-width: 800px) {
+  .modal aside {
+    width: 100%;
+    max-width: inherit;
+    position: inherit;
+  }
+
+  .modal article {
+    width: 100%;
+    margin-left: 0;
+    min-height: inherit;
+  }
+
+  .modal .card-media,
+  .modal .icon-container {
+    margin-right: 0;
+    height: initial;
+  }
+
+  .modal .card-media img {
+    max-height: initial;
+    height: initial;
+  }
+}
+
+/*** Materialize Design Tweaks ***/
+
+/* round corners for cards */
+.card {
+  border-radius: 12px;
+}
+
+/* round corners for contribute link */
+.card .card-action:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+/* round corners for modals */
+.modal {
+  border-radius: 12px;
+}
+
+/* end modal with contribute button */
+.modal .modal-content {
+  padding-bottom: 0;
+}
+
+/* fix header responsiveness */
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: initial;
+    -webkit-transform: initial;
+    transform: initial;
+  }
+}
+
+/* no wrapping for title */
+nav .brand-logo {
+  white-space: nowrap;
+}
+
+/* optimize phone display */
+@media only screen and (max-width: 600px) {
+  nav #header-text {
+    visibility: hidden;
+  }
+
+  nav .brand-logo.logo {
+    visibility: hidden;
+  }
+
+  nav .brand-logo.center {
+    line-height: 55px;
+    font-size: 1.75rem;
+  }
+
+  nav {
+    height: 55px !important;
+  }
+}
+
+/* subtle hover animation for item interaction */
+.card:hover,
+tr:hover {
+  transform: scale3d(1.05, 1.05, 1);
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+}
+
+/* blue hover shadow for cards */
+.hoverable:hover {
+  box-shadow: 0 8px 17px 0 rgba(13,61,103,0.2), 0 6px 20px 0 rgba(13,61,103,0.2);
+}
+
+/* blue hover shadow for modals */
+.modal {
+  box-shadow: 0 24px 38px 3px rgba(13,61,103,0.14), 0 9px 46px 8px rgba(13,61,103,0.12), 0 11px 15px -7px rgba(13,61,103,0.2);
+}
+
+/* dark blue overlay color */
+.modal-overlay {
+  background: #0a3050;
+}

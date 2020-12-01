@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>InnerSource Project Portal</title>
+    <link rel="stylesheet" href="lib/materialize.min.css"/>
+    <link rel="stylesheet" href="lib/material-icons.css"/>
+    <link rel="stylesheet" href="styles/global.css"/>
+  </head>
+  <body>
+    <!-- header bar -->
+    <nav>
+      <div class="nav-wrapper blue">
+        <a target="_blank" href="https://yourcompany.corp/innersource-landingpage" class="brand-logo logo">
+          <img src="images/logo.png" width="50" alt="InnerSource logo" data-position="right" data-tooltip="Show more information about InnerSource..." class="tooltipped">
+        </a>
+        <span class="brand-logo center">InnerSource Project Portal<span id="header-text">Leverage, Reuse or Contribute to <span id="count"></span> innersourced projects at SAP</span></span>
+      </div>
+    </nav>
+
+    <div style="margin-top: 20px;" class="container">
+      <!-- filter/sort/search bar -->
+      <div class="row">
+        <div class="input-field col l3 m6 s6">
+          <select id="filter">
+            <option value="All" selected>All</option>
+            <!-- is filled dynamically -->
+            <option value="N/A">Other</option>
+          </select>
+          <label>Filter by languages:</label>
+        </div>
+
+        <div class="input-field col l3 m6 s6">
+          <select id="sort">
+            <option value="score" selected>Activity</option>
+            <option value="name">Name</option>
+            <option value="full_name">Organization</option>
+            <option value="stargazers_count">Stars</option>
+            <option value="watchers_count">Watchers</option>
+            <option value="open_issues_count">Issues</option>
+            <option value="forks_count">Forks</option>
+          </select>
+          <label>Sort by:</label>
+        </div>
+        <div class="input-field col l4 m10 s8">
+          <input id="search" type="text" class="validate">
+          <label for="search">Search</label>
+        </div>
+        <div class="switch icons col l2 m2 s4">
+          <label>
+            <br/>
+            <i class="small material-icons">view_list</i>
+            <input id="display" type="checkbox" checked value="card">
+            <span class="lever"></span>
+            <i class="small material-icons active">view_modules</i>
+          </label>
+        </div>
+      </div>
+
+      <!-- card content (default), is filled dynamically -->
+      <div id="cards" class="row"></div>
+
+      <!-- list content (alternative) -->
+      <table id="list" class="list highlight" style="display: none !important;">
+        <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Name</th>
+          <th class="hidePhone hideTablet">Description</th>
+          <th class="hidePhone hideTablet">Stars</th>
+          <th class="hidePhone hideTablet">Issues</th>
+          <th class="hidePhone hideTablet">Forks</th>
+          <th>Score</th>
+          <th>Lang</th>
+          <th class="hidePhone">Action</th>
+        </tr>
+        </thead>
+        <!-- is filled dynamically -->
+        <tbody id="rows"></tbody>
+      </table>
+
+      <!-- add button-->
+      <div data-position="left" data-tooltip="Add a new InnerSource project to the Project Portal..." class="tooltipped fixed-action-btn">
+        <a target="_blank" href="https://yourcompany.corp/innersource-instructions" class="btn-floating btn-large orange">
+          <i class="large material-icons">add</i>
+        </a>
+      </div>
+    </div>
+
+    <!-- modal placeholder -->
+    <div id="modal-details" class="modal"></div>
+
+    <!-- HTML templates (filled in scripts) -->
+    <div id="templates" style="display: none">
+      <!-- card template -->
+      <div id="card-template">
+        <div class="col l4 s12 m6">
+          <div class="card hoverable" onclick="showModal([[id]], event)" style="cursor: pointer">
+            <div class="card-content">
+              <span class="card-media">
+                <img src="[[mediaURL]]"/>
+              </span>
+              <div class="card-title">[[title]]
+                <p class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></p>
+              </div>
+              <div class="card-description">[[description]]</div>
+              <div class="icon-container">
+                <div class="tooltipped" data-position="top" data-tooltip="Stars">
+                  <i class="small material-icons">star</i>
+                  <span class="icon-subtitle">[[stars]]</span>
+                </div>
+                <div class="tooltipped" data-position="top" data-tooltip="Issues">
+                  <i class="small material-icons">error</i>
+                  <span class="icon-subtitle">[[issues]]</span>
+                </div>
+                <div class="tooltipped" data-position="top" data-tooltip="Forks">
+                  <i class="small material-icons">share</i>
+                  <span class="icon-subtitle">[[forks]]</span>
+                </div>
+                <div>
+                  [[score]]
+                </div>
+                <div>
+                  [[language]]
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; font-weight: bold;" class="blue card-action darken-1">
+              <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row template -->
+      <div id="row-template">
+        <table width="100%">
+          <tr onclick="showModal([[id]], event)" style="cursor: pointer">
+            <td><span class="card-media"><img src="[[mediaURL]]"/></span></td>
+            <td><b>[[title]]</b><br/>
+              <span class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></span></td>
+            <td class="hidePhone hideTablet"><div class="card-description">[[description]]</div></td>
+            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Stars">
+              <i class="small material-icons">star</i>
+              <span class="icon-subtitle">[[stars]]</span>
+            </div></td>
+            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Issues">
+              <i class="small material-icons">error</i>
+              <span class="icon-subtitle">[[issues]]</span>
+            </div></td>
+            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Forks">
+              <i class="small material-icons">share</i>
+              <span class="icon-subtitle">[[forks]]</span>
+            </div></td>
+            <td>[[score]]</td>
+            <td>[[language]]</td>
+            <td class="hidePhone"><div style="text-align: center; font-weight: bold;" class="blue card-action darken-1">
+              <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
+            </div></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- modal template -->
+      <div id="details-template">
+        <div class="modal-content">
+          <aside>
+            <span class="card-media">
+              <img src="[[mediaURL]]"/>
+            </span>
+            <div class="icon-container">
+              <div class="tooltipped" data-position="top" data-tooltip="Stars">
+                <i class="small material-icons">star</i>
+                <span class="icon-subtitle">[[stars]]</span>
+              </div>
+              <div class="tooltipped" data-position="top" data-tooltip="Issues">
+                <i class="small material-icons">error</i>
+                <span class="icon-subtitle">[[issues]]</span>
+              </div>
+              <div class="tooltipped" data-position="top" data-tooltip="Forks">
+                <i class="small material-icons">share</i>
+                <span class="icon-subtitle">[[forks]]</span>
+              </div>
+              <div>
+                [[score]]
+              </div>
+              <div>
+                [[language]]
+              </div>
+            </div>
+          </aside>
+
+          <article>
+            <h4>[[title]]</h4>
+            <p class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></p>
+            <p>[[description]]</p>
+            [[#if skills]]<p><b>Skills required:</b><br/>[[skills]]</p>[[/if]]
+            <p><b>Contributions wanted:</b><br/>[[contributions]]</p>
+            [[#if documentationURL]]<p><b>Documentation:</b><br/><a href="[[documentationURL]]" target="_blank">[[documentationURL]]</a></p>[[/if]]
+            <p><b>Created at:</b> [[createdAt]]</p>
+            <p><b>Last update:</b> [[lastUpdate]]</p>
+            <p><b>Activity Score:</b> [[scoreNumeric]]</p>
+            <p><b>Average commits over the last year:</b><br/>
+            <div id="participationChart" class="participationChart"></div></p>
+          </article>
+
+          <a href="#!" class="modal-close waves-effect btn-flat">x</a>
+        </div>
+        <div class="modal-footer">
+          <div class="blue card-action darken-1">
+            <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- participation template -->
+      <div id="participation-template">
+        <div class="thisWeek [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>
+        [[#foreach weeks]]<div class="previousWeeks [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>[[/foreach]]
+        <div class="legend">
+          <div class="thisWeekLegend">This week</div><div class="previousWeeksLegend">In previous [[previousWeeks]]</div>
+        </div>
+        [[#foreach before]]<div class="previousMonths [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>[[/foreach]]
+        [[#if weeksBefore]]
+        <div class="legend">
+          <div class="previousMonthsLegend">In the [[weeksBefore]]</div>
+        </div>
+        [[/if]]
+      </div>
+    </div>
+
+    <!-- thirdparty libraries -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/materialize.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="lib/seedrandom.min.js"></script>
+
+    <!-- our scripts -->
+    <script src="scripts/index.js"></script>
+  </body>
+</html>

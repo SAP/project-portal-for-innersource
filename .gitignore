@@ -1,0 +1,6 @@
+data
+./repos.json
+lib/*.js
+lib/*.css
+node_modules
+.idea

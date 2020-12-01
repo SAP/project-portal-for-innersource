@@ -1,0 +1,25 @@
+{
+  "name": "project-portal-for-innersource",
+  "description": "Lists all InnerSource projects at SAP in an interactive and easy to use portal",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "node postinstall",
+    "start": "http-server . -p8080 -o index.html"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "fs-extra": "^9.0.1",
+    "jquery": "^3.5.1",
+    "materialize-css": "^1.0.0",
+    "material-icons": "^0.3.1",
+    "moment": "^2.29.0",
+    "seedrandom": "^3.0.5"
+  },
+  "licenses": [
+    {
+      "name": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ]
+}
