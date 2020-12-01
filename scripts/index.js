@@ -386,10 +386,7 @@ function generateItem (sDisplay, oRepo) {
 // load repos.json file and display the list of projects from it
 $(window.document).ready(() => {
   $.ajax({
-    url:
-        window.document.location.port && window.document.location.port != 80
-        ? `repos.json`
-        : `data/repos.json`,
+    url: `repos.json`,
     type: `GET`,
     dataType: "json",
     success: (oData) => {
