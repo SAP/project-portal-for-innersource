@@ -483,7 +483,7 @@ function sort(sParam) {
 function filter(sParam) {
   let aResult;
   if (sParam !== "All") {
-    if (sParam === "N/A") { // other (null in GitHub, undefined in Gerrit)
+    if (sParam === "N/A") { // other
       aResult = window._globals.allRepos.filter((repo) => repo.language === null || repo.language === undefined);
     } else {
       aResult = window._globals.allRepos.filter((repo) => repo.language === sParam);
