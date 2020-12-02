@@ -3,8 +3,8 @@
 ## General Remarks
 
 This project serves as a template for implementing the InnerSource Commons [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) pattern.
-Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying InnerSource principles. 
-Changes should be made in a generic and extensible way, so that all stakeholders can benefit from the improvment abd apply it to their portal instance.
+Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying [InnerSource principles](). 
+Changes should be made in a generic and extensible way, so that all stakeholders can benefit from the improvment and apply it to their portal instance.
 
 ## Found a bug?
 
@@ -27,7 +27,7 @@ Just open an issue, describe how to reproduce the bug and what you would expect 
 1. Add the topic `inner-source` to your GitHub repository by clicking on the link "manage topics" below the repository description:
 `https://github.yourcompany.corp/<organization>/<repository>`
  
-> **Note:** The portal assumes that a crawler collects all repositories marked as innersource and compiles a frequently updated ```repos.json``` file automatically. All data inside this file can be compiled by querying the [GitHub API](https://developer.github.com/v3/) and the metadata defined in ```innersource.json```. Check the section [Configuration in the README](README.md#configuration) to learn more about crawling InnerSource projects .
+> **Note:** The portal assumes that a crawler collects all repositories marked as innersource in your company and compiles a frequently updated ```repos.json``` file automatically. All data inside this file can be compiled by querying the [GitHub API](https://developer.github.com/v3/) and the metadata defined in ```innersource.json```. Check the section [Configuration in the README](README.md#configuration) to learn more about crawling InnerSource projects .
  
 2. (Optional) To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository with the following format:
 
