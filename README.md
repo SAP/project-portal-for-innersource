@@ -3,12 +3,11 @@
 A reference implementation to list all InnerSource projects of a company in an interactive and ease to use way.
 It can be used as a template for implementing the InnerSource Commons [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) pattern.
 
-
 ## Demo 
 
 A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/index.html).
 
-> **Note:** The portal can also be seen in action in the InnerSourceCommons Fall Summit 2020 session [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo&list=PLCH-i0B0otNQZQt_QzGR9Il_kE4C6cQRy&index=6).
+The portal can also be seen in action at the InnerSourceCommons Fall Summit 2020 session [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo).
 
 ## Description
 
@@ -78,12 +77,12 @@ To do so, apply the following steps:
 
 4. Write the resulting list of projects with all metadata to the file ```repos.json``` to serve all projects it in the portal.
 
-With this approach, projects can self-register to the portal by adding the ```inner-source``` topic to their repository and specifying additional metadata inside an ```innersource.json````file.
+With this approach, projects can self-register to the portal by adding the ```inner-source``` topic to their repository and specifying additional metadata inside an ```innersource.json``` file.
 For more information about this file, see [Listing Project in the Project Portal for InnerSource](CONTRIBUTING.md#listing-project-in-the-project-portal-for-innersource)
 
 ## Limitations
 
-The portal focuses on InnerSource projects located in an enterprise GitHub instance. Projects using other source code management systems can be converted using similar APIs or added manually to the ```repos.json``` file.  
+The portal focuses on InnerSource projects located in one or more GitHub enterprise instances. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the ```repos.json``` file.  
 
 ## Contributing
 
@@ -92,7 +91,7 @@ Please check our [contributing guidelines](CONTRIBUTING.md) for more details.
 
 ## Thirdparty
 
-We used the following open source frameworks to create the portal:
+We use the following open source frameworks to create the portal:
 
 * [jQuery](https://jquery.com/)
 * [Materialize](https://materializecss.com/)
@@ -102,4 +101,4 @@ We used the following open source frameworks to create the portal:
 
 ## Acknowledgements
 
-Thanks for the input and great support of the [InnerSourceCommons Pattern Group](https://github.com/InnerSourceCommons/InnerSourcePatterns).
+Thanks to [InnerSourceCommons Pattern Group](https://github.com/InnerSourceCommons/InnerSourcePatterns) for the feedback and great support.
