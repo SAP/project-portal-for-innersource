@@ -24,10 +24,10 @@ Just open an issue, describe how to reproduce the bug and what you would expect 
 
 ## Listing Project in the Project Portal for InnerSource
 
-1. Add the topic `inner-source` to your GitHub repository by clicking on the link "manage topics" below the repository description:
+1. In your GitHub enterprise instance, add the topic `inner-source` to your repository by clicking on the link "manage topics" below the repository description:
 `https://github.yourcompany.corp/<organization>/<repository>`
  
-> **Note:** The portal assumes that a crawler collects all repositories marked as innersource in your company and compiles a frequently updated ```repos.json``` file automatically. All data inside this file can be compiled by querying the [GitHub API](https://developer.github.com/v3/) and the metadata defined in ```innersource.json```. Check the section [Configuration in the README](README.md#configuration) to learn more about crawling InnerSource projects .
+> **Note:** The portal assumes that a crawler script frequently collects all repositories marked as InnerSource inside your company and compiles a ```repos.json``` file automatically. All data inside this file can be compiled by querying the [GitHub API](https://developer.github.com/v3/) and loading the additional metadata defined in ```innersource.json```. Check the section [Configuration in the README](README.md#configuration) to learn more about crawling InnerSource projects .
  
 2. (Optional) To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository with the following format:
 
