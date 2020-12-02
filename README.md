@@ -1,7 +1,8 @@
 # Project Portal for InnerSource
 
 A reference implementation to list all InnerSource projects of a company in an interactive and ease to use way.
-It can be used as a template for implementing the InnerSource Commons [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) pattern.
+It can be used as a template for implementing the [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
+
 
 ## Demo 
 
