@@ -1,6 +1,6 @@
 # Project Portal for InnerSource [![REUSE status](https://api.reuse.software/badge/github.com/SAP/project-portal-for-innersource)](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource)
 
-A reference implementation to list all InnerSource projects of a company in an interactive and ease to use way.
+A reference implementation to list all InnerSource projects of a company in an interactive and easy to use way.
 It can be used as a template for implementing the [InnerSource portal pattern](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
 
 
