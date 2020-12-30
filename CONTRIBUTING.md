@@ -3,7 +3,7 @@
 ## General Remarks
 
 This project serves as a template for implementing the InnerSource Commons [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) pattern.
-Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying [InnerSource principles](). 
+Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying [InnerSource principles](https://innersourcecommons.org/resources/books/adoptinginnersource/). 
 Changes should be made in a generic and extensible way, so that all stakeholders can benefit from the improvment and apply it to their portal instance.
 
 ## Found a bug?
