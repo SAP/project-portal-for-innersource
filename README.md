@@ -70,7 +70,7 @@ To do so, apply the following steps:
 
    * Check if there is a file ```innersource.json``` in the repository and add all keys directly below ```_InnerSourceMetadata```.
 
-   * Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with key `participation` 
+   * Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation` 
 
    * Check if there is a file ```CONTRIBUTING.md``` in the repository and add it with the key `guidelines`, value `CONTRIBUTING.md`
 
