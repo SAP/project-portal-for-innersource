@@ -133,6 +133,21 @@ function getRepoLanguage(sLanguage) {
   return `<div class="tooltipped language" style="${ sLanguageShort !== "N/A" ? "background-color: "+ stringToColour(sLanguage) : "" }; ${ sFontSize ? "font-size: "+ sFontSize : "" }" data-position="top" data-tooltip="Language: ${sLanguage}">${sLanguageShort}</div>`
 }
 
+// get a visual representation of the Activity Score of the repo.
+// - if Activity Score exists: an image representing how active the repo is
+// - if Activity Score doesn't exist: a placeholder
+function getRepoActivity(oRepo) {
+  let iScoreImage = `<div class="tooltipped language" data-position="top" data-tooltip="Activity: not available">N/A</div>`;
+  let iScoreNumeric = "N/A";
+
+  if (oRepo._InnerSourceMetadata && typeof oRepo._InnerSourceMetadata.score === "number") {
+    iScoreImage = getActivityLogo(oRepo._InnerSourceMetadata.score)
+    iScoreNumeric = oRepo._InnerSourceMetadata.score;
+  }
+
+  return [iScoreImage, iScoreNumeric];
+}
+
 // fetches the corresponding image for the activity score
 function getActivityLogo(iScore) {
   let sLogo, sActivityLevel;
@@ -272,11 +287,9 @@ function showModal (vRepoId, oEvent) {
   sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
   sHTML = sHTML.replace("[[forks]]", oRepo.forks_count);
 
-  let iScore = oRepo._InnerSourceMetadata &&
-      typeof oRepo._InnerSourceMetadata.score === "number" &&
-      getActivityLogo(oRepo._InnerSourceMetadata.score);
-  sHTML = sHTML.replace("[[score]]", iScore);
-  sHTML = sHTML.replace("[[scoreNumeric]]", oRepo._InnerSourceMetadata.score);
+  let [iScoreImage, iScoreNumeric] = getRepoActivity(oRepo);
+  sHTML = sHTML.replace("[[score]]", iScoreImage);
+  sHTML = sHTML.replace("[[scoreNumeric]]", iScoreNumeric);
 
   sHTML = sHTML.replace("[[language]]", getRepoLanguage(oRepo.language));
 
@@ -366,10 +379,8 @@ function generateItem (sDisplay, oRepo) {
   sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
   sHTML = sHTML.replace("[[forks]]", oRepo.forks_count);
 
-  let iScore = oRepo._InnerSourceMetadata &&
-      typeof oRepo._InnerSourceMetadata.score === "number" &&
-      getActivityLogo(oRepo._InnerSourceMetadata.score);
-  sHTML = sHTML.replace("[[score]]", iScore);
+  let [iScoreImage, ] = getRepoActivity(oRepo);
+  sHTML = sHTML.replace("[[score]]", iScoreImage);
 
   sHTML = sHTML.replace("[[language]]", getRepoLanguage(oRepo.language));
 
