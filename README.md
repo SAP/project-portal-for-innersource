@@ -66,7 +66,7 @@ To do so, apply the following steps:
 
    The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields. 
    
-   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query depending on how your InnerSource repositories are characterized. 
+   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query depending on how InnerSource repositories are characterized in your environment. 
 
 2. For each resulting project add a key ```_InnerSourceMetadata``` to the result from the GitHub API call and fill it with additional metadata about the project:
 
