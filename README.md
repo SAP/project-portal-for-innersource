@@ -61,10 +61,12 @@ To do so, apply the following steps:
 1. Crawl all projects with the topic `inner-source` in your GitHub instance using the [GitHub search API](https://developer.github.com/v3/search/):
 
    ```
-   ?q=topic:inner-source is:public
+   ?q=topic:inner-source
    ```
 
-   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields.
+   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields. 
+   
+   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query depending on how your InnerSource repositories are characterized. 
 
 2. For each resulting project add a key ```_InnerSourceMetadata``` to the result from the GitHub API call and fill it with additional metadata about the project:
 
