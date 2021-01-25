@@ -283,7 +283,9 @@ function showModal (vRepoId, oEvent) {
           : "";
   sHTML = sHTML.replace("[[description]]", sDescription);
 
-  sHTML = sHTML.replace("[[topics]]", oRepo.topics.join(", "));
+  let sTopics = oRepo.topics ? oRepo.topics.map((t) => "<span class='pill'>"+t+"</span>").join(" ") : "";
+  sHTML = sHTML.replace("[[topics]]", sTopics);
+  sHTML = sHTML.replace(/\[\[#if topics\]\](.*)\[\[\/if\]\]/, sTopics ? "$1" : "");
 
   sHTML = sHTML.replace("[[stars]]", oRepo.stargazers_count);
   sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
