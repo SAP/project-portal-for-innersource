@@ -1,5 +1,5 @@
 data
-./repos.json
+repos.json
 lib/*.js
 lib/*.css
 node_modules
