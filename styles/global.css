@@ -558,3 +558,12 @@ tr:hover {
 .modal-overlay {
   background: #0a3050;
 }
+
+/* little blue pill around topics in details view */
+.pill {
+    border-radius: 2em;
+    padding: 2px 10px;
+    background-color: lightblue;
+    margin-bottom: 5px;
+    display: inline-block;
+}

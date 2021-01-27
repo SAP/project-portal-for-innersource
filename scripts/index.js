@@ -283,6 +283,10 @@ function showModal (vRepoId, oEvent) {
           : "";
   sHTML = sHTML.replace("[[description]]", sDescription);
 
+  let sTopics = oRepo.topics ? oRepo.topics.map((t) => "<span class='pill'>"+t+"</span>").join(" ") : "";
+  sHTML = sHTML.replace("[[topics]]", sTopics);
+  sHTML = sHTML.replace(/\[\[#if topics\]\](.*)\[\[\/if\]\]/, sTopics ? "$1" : "");
+
   sHTML = sHTML.replace("[[stars]]", oRepo.stargazers_count);
   sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
   sHTML = sHTML.replace("[[forks]]", oRepo.forks_count);
@@ -529,6 +533,8 @@ function search(sParam) {
       repo.name.toLowerCase().includes(sLowerCaseParam) ||
       // description
       (repo.description && repo.description.toLowerCase().includes(sLowerCaseParam)) ||
+      // topics
+      (repo.topics && repo.topics.join(" ").toLowerCase().includes(sLowerCaseParam)) ||
       // InnerSource metadata
       (repo._InnerSourceMetadata &&
         (
