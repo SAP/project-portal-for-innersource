@@ -72,7 +72,9 @@ To do so, apply the following steps:
 
    * Query GitHub [weekly participation statistics](https://developer.github.com/v3/repos/statistics/#get-the-weekly-commit-count) (subset "all") and add it with key `participation` 
 
-   * Check if there is a file ```CONTRIBUTING.md``` and add it with the key `guidelines`
+   * (Optional) Check if there are contribution guidelines and add the path with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
+   
+   * (Optional) Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
 
 3. (Optional) Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Sort entries by score descending.
 
