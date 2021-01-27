@@ -61,24 +61,26 @@ To do so, apply the following steps:
 1. Crawl all projects with the topic `inner-source` in your GitHub instance using the [GitHub search API](https://developer.github.com/v3/search/):
 
    ```
-   ?q=topic:inner-source is:public
+   ?q=topic:inner-source
    ```
 
-   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields.
+   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields. 
+   
+   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query, depending on how InnerSource repositories are characterized in your environment. 
 
 2. For each resulting project add a key ```_InnerSourceMetadata``` to the result from the GitHub API call and fill it with additional metadata about the project:
 
    * Check if there is a file ```innersource.json``` in the repository and add all keys directly below ```_InnerSourceMetadata```.
 
-   * Query GitHub [weekly participation statistics](https://developer.github.com/v3/repos/statistics/#get-the-weekly-commit-count) (subset "all") and add it with key `participation` 
+   * Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation` 
 
-   * (Optional) Check if there are contribution guidelines and add the path with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
+   * (Optional) Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
    
    * (Optional) Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
 
-3. (Optional) Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Sort entries by score descending.
+   * (Optional) Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Sort entries by score descending. Add it with the key `score`
 
-4. Write the resulting list of projects with all metadata to the file ```repos.json``` to serve all projects it in the portal.
+3. Write the resulting list of projects with all metadata to the file ```repos.json``` to serve all projects in the portal.
 
 With this approach, projects can self-register to the portal by adding the ```inner-source``` topic to their repository and specifying additional metadata inside an ```innersource.json``` file.
 For more information about this file, see [Listing Project in the Project Portal for InnerSource](CONTRIBUTING.md#listing-project-in-the-project-portal-for-innersource)
