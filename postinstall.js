@@ -5,6 +5,10 @@ const fs = require("fs-extra");
 // declare all dependencies
 const sLibraryPath = "./lib/";
 const oLibraries = {
+	"handlebars": [
+		"./node_modules/handlebars/dist/handlebars.js",
+		"./node_modules/handlebars/dist/handlebars.runtime.js",
+	],
 	"materialize-css": [
 		"./node_modules/materialize-css/dist/css/materialize.min.css",
 		"./node_modules/materialize-css/dist/js/materialize.min.js"

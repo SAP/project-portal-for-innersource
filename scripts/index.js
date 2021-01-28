@@ -2,7 +2,8 @@
 window._globals = {
 	allRepos: undefined,
 	sortFilterSearchRepos: undefined,
-	ignoreNextHashChange: undefined
+	ignoreNextHashChange: undefined,
+	templates: {}
 };
 
 // register events for updating the UI state based on the hash
@@ -38,16 +39,16 @@ function createContent (aItems) {
 // updates the content area
 function updateContent (sDisplay, sResult, aItems) {
 	// flush html
-	document.getElementById((sDisplay === "card" ? "card" : "row") + "s").innerHTML = sResult;
+	window.document.getElementById((sDisplay === "card" ? "card" : "row") + "s").innerHTML = sResult;
 
 	// update result count in search placeholder
-	document.getElementById("search").labels[0].innerText = `Search ${aItems.length} projects...`;
+	window.document.getElementById("search").labels[0].innerText = `Search ${aItems.length} projects...`;
 
 	// replace broken images with a	default image
-	registerFallbackImage(document);
+	registerFallbackImage(window.document);
 
 	// initialize tooltips
-	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+	M.Tooltip.init(window.document.querySelectorAll(".tooltipped"));
 }
 
 // updates UI state based on Hash
@@ -93,15 +94,15 @@ function registerFallbackImage (oNode) {
 	}
 }
 
-// helper function to display each language in a different static colour
-function stringToColour (sString) {
+// helper function to display each language in a different static color
+function stringToColor (sString) {
 	Math.seedrandom(sString);
 	const rand = Math.random() * Math.pow(255,3);
 	Math.seedrandom();
 
-	let colour = "#";
-	for (let i = 0; i < 3; colour += ("00" + ((rand >> i++ * 8) & 0xFF).toString(16)).slice(-2));
-	return colour;
+	let sColor = "#";
+	for (let i = 0; i < 3; sColor += ("00" + ((rand >> i++ * 8) & 0xFF).toString(16)).slice(-2));
+	return sColor;
 }
 
 // fetches an image for the detected programming language
@@ -136,31 +137,37 @@ function getRepoLanguage (sLanguage) {
 		sLanguage = "not available";
 	}
 
-	// a div with a pseudo-random color coding and the shortened text
-	return `<div class="tooltipped language" style="${ sLanguageShort !== "N/A" ? "background-color: "+ stringToColour(sLanguage) : "" }; ${ sFontSize ? "font-size: "+ sFontSize : "" }" data-position="top" data-tooltip="Language: ${sLanguage}">${sLanguageShort}</div>`;
+	// a pseudo-random color coding and the shortened text
+	return window._globals.templates.language({
+		color: (sLanguageShort !== "N/A" ?  stringToColor(sLanguage) : ""),
+		fontSize: sFontSize,
+		language: sLanguage,
+		languageShort: sLanguageShort
+	});
 }
 
 // get a visual representation of the Activity Score of the repo.
 // - if Activity Score exists: an image representing how active the repo is
 // - if Activity Score doesn't exist: a placeholder
 function getRepoActivity (oRepo) {
-	let iScoreImage = "<div class=\"tooltipped language\" data-position=\"top\" data-tooltip=\"Activity: not available\">N/A</div>";
-	let iScoreNumeric = "N/A";
+	let sScoreIndicator = "<div class=\"tooltipped score\" data-position=\"top\" data-tooltip=\"Activity: not available\">N/A</div>",
+		vScoreNumeric = "N/A";
 
 	if (oRepo._InnerSourceMetadata && typeof oRepo._InnerSourceMetadata.score === "number") {
-		iScoreImage = getActivityLogo(oRepo._InnerSourceMetadata.score);
-		iScoreNumeric = oRepo._InnerSourceMetadata.score;
+		sScoreIndicator = getActivityLogo(oRepo._InnerSourceMetadata.score);
+		vScoreNumeric = oRepo._InnerSourceMetadata.score;
 	}
 
-	return [iScoreImage, iScoreNumeric];
+	return [sScoreIndicator, vScoreNumeric];
 }
 
 // fetches the corresponding image for the activity score
 function getActivityLogo (iScore) {
-	let sLogo, sActivityLevel;
+	let sLogo = "images/activity/0.png",
+		sActivityLevel = "None";
 
 	if (iScore > 2500) {
-		sLogo = "images/activity/5.png\"";
+		sLogo = "images/activity/5.png";
 		sActivityLevel = "Extremely High";
 	} else if (iScore > 1000) {
 		sLogo = "images/activity/4.png";
@@ -177,43 +184,50 @@ function getActivityLogo (iScore) {
 	} else if (iScore > 5) {
 		sLogo = "images/activity/0.png";
 		sActivityLevel = "Very Low";
-	} else {
-		sLogo = "images/activity/0.png";
-		sActivityLevel = "None";
 	}
 
-	return `<img class="tooltipped" data-position="top" data-tooltip="Activity: ${sActivityLevel}" alt="Activity: ${sActivityLevel}" src="${sLogo}"/>`;
+	return window._globals.templates.score({
+		"logo": sLogo,
+		"level": sActivityLevel
+	});
+}
+
+// calculations a color for the participation value
+function getParticipationColor (iValue) {
+	let iOpacity;
+	if (!iValue) {
+		return false;
+	}
+	if (iValue === 0) {
+		iOpacity = 0;
+	} else {
+		iOpacity = Math.log(iValue)/4 + 0.03; // 50 = 1, scale logarithmically below
+	}
+	iOpacity = Math.min(1, iOpacity);
+	return "rgba(50, 205, 50, " + iOpacity + ")";
 }
 
 // creates an HTMl-based heatmap for the current week and the previous 12 weeks from participation stats
 function createParticipationChart (oRepo) {
-	function participationColor (iValue) {
-		let iOpacity;
-		if (iValue === 0) {
-			iOpacity = 0;
-		} else {
-			iOpacity = Math.log(iValue)/4 + 0.03; // 50 = 1, scale logarithmically below
-		}
-		iOpacity = Math.min(1, iOpacity);
-		return "rgba(50, 205, 50, " + iOpacity + ")";
-	}
 	let aParticipation = oRepo._InnerSourceMetadata.participation;
 	const aPrevious12Weeks = aParticipation.slice(aParticipation.length - 13, aParticipation.length - 1).reverse();
 
 	// this week
-	let sHTML = window.document.getElementById("participation-template").innerHTML;
 	let iValue = aParticipation[aParticipation.length - 1];
-	sHTML = sHTML.replace("[[hasCommits]]", iValue ? "hasCommits" : "");
-	sHTML = sHTML.replace("[[backgroundColor]]", iValue ? "background-color: " + participationColor(iValue) : "" );
-	sHTML = sHTML.replace("[[commits]]", iValue);
+	let oContext = {
+		thisWeek: {
+			"commits": iValue,
+			"color": getParticipationColor(iValue)
+		},
+		"weeksPreviousLabel": undefined,
+		"weeksPrevious": [],
+		"weeksBeforeLabel": undefined,
+		"weeksBefore": []
+	};
 
-	// previous weeks
-	let sWeekTemplate = sHTML.match(/\[\[#foreach weeks]](.*)\[\[\/foreach\]\]/).pop();
-	let sWeekHTML = "";
-
+	// previous 12 weeks
 	const iCreatedWeeksAgo = Math.ceil((Date.now() - new Date(oRepo.created_at).getTime()) / 1000 / 86400 / 7) - 1;
 	let iCommitsWeeksBefore = 0;
-
 	aPrevious12Weeks.forEach((iValue, iIndex) => {
 		// don't print boxes for new repos
 		if (iIndex >= iCreatedWeeksAgo) {
@@ -221,42 +235,33 @@ function createParticipationChart (oRepo) {
 		}
 		iCommitsWeeksBefore += iValue;
 
-		let sWeekBox = sWeekTemplate.replace("[[hasCommits]]", iValue ? "hasCommits" : "");
-		sWeekBox = sWeekBox.replace("[[backgroundColor]]", iValue ? "background-color: " + participationColor(iValue) : "");
-		sWeekBox = sWeekBox.replace("[[commits]]", iValue);
-		sWeekHTML += sWeekBox;
+		oContext.weeksPrevious.push({
+			"commits": iValue,
+			"color": getParticipationColor(iValue)
+		});
 	});
-	sHTML = sHTML.replace(/\[\[#foreach weeks\]\](.*)\[\[\/foreach\]\]/, sWeekHTML);
+	oContext.weeksPreviousLabel = Math.min(12, iCreatedWeeksAgo) + " weeks: " + iCommitsWeeksBefore;
 
-	// legend previous weeks
-	sHTML = sHTML.replace("[[previousWeeks]]", Math.min(12, iCreatedWeeksAgo) + " weeks: " + iCommitsWeeksBefore);
-
-	// weeks before
-	let sBeforeTemplate = sHTML.match(/\[\[#foreach before]](.*)\[\[\/foreach\]\]/).pop();
-	let sBeforeHTML = "";
-
+	// 9 months before in weeks
 	const aPrevious9months = aParticipation.slice(1, aParticipation.length - 13).reverse();
 	let iWeeksBefore = 0;
 	let iCommitsMonthBefore = 0;
 	aPrevious9months.forEach((iValue, iIndex) => {
-		if (iIndex >= iCreatedWeeksAgo - 12) {
+		// don't print boxes for new repos
+		if (iIndex >= iCreatedWeeksAgo - 13) {
 			return;
 		}
-		iWeeksBefore++;
 		iCommitsMonthBefore += iValue;
+		iWeeksBefore++;
 
-		let sBeforeBox = sBeforeTemplate.replace("[[hasCommits]]", iValue ? "hasCommits" : "");
-		sBeforeBox = sBeforeBox.replace("[[backgroundColor]]", iValue ? "background-color: " + participationColor(iValue) : "" );
-		sBeforeBox = sBeforeBox.replace("[[commits]]", iValue);
-		sBeforeHTML += sBeforeBox;
+		oContext.weeksBefore.push({
+			"commits": iValue,
+			"color": getParticipationColor(iValue)
+		});
 	});
-	sHTML = sHTML.replace(/\[\[#foreach before\]\](.*)\[\[\/foreach\]\]/, sBeforeHTML);
+	oContext.weeksBeforeLabel = (Math.floor(iWeeksBefore / 4) <= 1 ? iWeeksBefore + " weeks before: " : Math.floor(iWeeksBefore / 4) + " months before: ") + iCommitsMonthBefore;
 
-	// legend weeks before
-	sHTML = sHTML.replace("[[weeksBefore]]", (Math.floor(iWeeksBefore / 4) <= 1 ? iWeeksBefore + " weeks before: " : Math.floor(iWeeksBefore / 4) + " months before: ") + iCommitsMonthBefore);
-	sHTML = sHTML.replace(/\[\[#if weeksBefore\]\]([^]*)\[\[\/if\]\]/gm, iWeeksBefore ? "$1" : "");
-
-	return sHTML;
+	return window._globals.templates.participation(oContext);
 }
 
 // creates HTML for and displays a project details modal
@@ -266,69 +271,68 @@ function showModal (vRepoId, oEvent) {
 		return;
 	}
 	const oRepo = window._globals.allRepos.filter(oRepo => oRepo.id === vRepoId).pop();
-	let sHTML = window.document.getElementById("details-template").innerHTML;
 
 	let sLogoURL = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.logo
 		? oRepo._InnerSourceMetadata.logo.startsWith("http") || oRepo._InnerSourceMetadata.logo.startsWith("./")
 			? oRepo._InnerSourceMetadata.logo
 			: "data/" + oRepo._InnerSourceMetadata.logo + (oRepo._InnerSourceMetadata.logo.split(".").pop() === "svg" ? "?sanitize=true" : "")
 		: oRepo.owner.avatar_url;
-	sHTML = sHTML.replace("[[mediaURL]]", sLogoURL);
 
 	let sTitle = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.title
 		? oRepo._InnerSourceMetadata.title
 		: readableRepoName(oRepo.name);
-	sHTML = sHTML.replace("[[title]]", sTitle);
-
-	sHTML = sHTML.replace("[[repoURL]]", oRepo.html_url);
-	sHTML = sHTML.replace("[[repoTitle]]", oRepo.owner.login + "/" + oRepo.name);
 
 	let sDescription = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.motivation
 		? oRepo._InnerSourceMetadata.motivation
 		: oRepo.description !== null
 			? oRepo.description
 			: "";
-	sHTML = sHTML.replace("[[description]]", sDescription);
 
-	let sTopics = oRepo.topics ? oRepo.topics.map((t) => "<span class='pill'>"+t+"</span>").join(" ") : "";
-	sHTML = sHTML.replace("[[topics]]", sTopics);
-	sHTML = sHTML.replace(/\[\[#if topics\]\](.*)\[\[\/if\]\]/, sTopics ? "$1" : "");
+	let [sScoreIndicator, vScoreNumeric] = getRepoActivity(oRepo);
 
-	sHTML = sHTML.replace("[[stars]]", oRepo.stargazers_count);
-	sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
-	sHTML = sHTML.replace("[[forks]]", oRepo.forks_count);
+	let aSkills = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.skills
+		? oRepo._InnerSourceMetadata.skills
+		: oRepo.language ?
+			[oRepo.language] :
+			[];
 
-	let [iScoreImage, iScoreNumeric] = getRepoActivity(oRepo);
-	sHTML = sHTML.replace("[[score]]", iScoreImage);
-	sHTML = sHTML.replace("[[scoreNumeric]]", iScoreNumeric);
-
-	sHTML = sHTML.replace("[[language]]", getRepoLanguage(oRepo.language));
-
-	let sSkills = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.skills ? oRepo._InnerSourceMetadata.skills.join("<br>") : oRepo.language;
-	sHTML = sHTML.replace("[[skills]]", sSkills);
-	sHTML = sHTML.replace(/\[\[#if skills\]\](.*)\[\[\/if\]\]/, sSkills ? "$1" : "");
-
-	let sContributions = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.contributions && oRepo._InnerSourceMetadata.contributions.length
-		? oRepo._InnerSourceMetadata.contributions.join("<br>")
-		: "Any";
-	sHTML = sHTML.replace("[[contributions]]", sContributions);
-
-	sHTML = sHTML.replaceAll("[[documentationURL]]", oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.docs);
-	sHTML = sHTML.replace(/\[\[#if documentationURL\]\](.*)\[\[\/if\]\]/, oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.docs ? "$1" : "");
-
-	sHTML = sHTML.replace("[[createdAt]]", moment(oRepo.created_at).format("MMMM Do YYYY"));
-	sHTML = sHTML.replace("[[lastUpdate]]", moment(oRepo.updated_at).fromNow());
+	let aContributions = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.contributions && oRepo._InnerSourceMetadata.contributions.length
+		? oRepo._InnerSourceMetadata.contributions
+		: ["Any"];
 
 	let sContributeURL = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.docs
 		? oRepo._InnerSourceMetadata.docs
 		: oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.guidelines
 			? `${oRepo.html_url}/blob/${oRepo.default_branch}/${oRepo._InnerSourceMetadata.guidelines}`
 			: oRepo.html_url;
-	sHTML = sHTML.replace("[[contributeURL]]", sContributeURL);
+
+	let oContext = {
+		"id" : (typeof oRepo.id === "string" ? "'" + oRepo.id + "'" : oRepo.id),
+		"mediaURL": sLogoURL,
+		"title": sTitle,
+		"repoURL": oRepo.html_url,
+		"repoTitle": oRepo.owner.login + "/" + oRepo.name,
+		"description": sDescription,
+		"topics": oRepo.topics,
+		"stars": oRepo.stargazers_count,
+		"issues": oRepo.open_issues_count,
+		"forks": oRepo.forks_count,
+		"score": sScoreIndicator,
+		"scoreNumeric": vScoreNumeric,
+		"language": getRepoLanguage(oRepo.language),
+		"skills": aSkills,
+		"contributions": aContributions,
+		"documentationURL": oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.docs,
+		"createdAt": moment(oRepo.created_at).format("MMMM Do YYYY"),
+		"lastUpdate": moment(oRepo.updated_at).fromNow(),
+		"contributeURL": sContributeURL
+	};
 
 	// fill & init modal
 	const oModalWrapper = window.document.getElementById("modal-details");
-	oModalWrapper.innerHTML = sHTML;
+	oModalWrapper.innerHTML = window._globals.templates.details(oContext);
+
+	// register close handler
 	M.Modal.init(oModalWrapper, {
 		onCloseEnd: () => {
 			updateHash("details", undefined);
@@ -348,58 +352,50 @@ function showModal (vRepoId, oEvent) {
 
 // fills the HTML template for a project item
 function generateItem (sDisplay, oRepo) {
-	let sHTML;
-	if (sDisplay === "list") {
-		sHTML = window.document.getElementById("row-template").getElementsByTagName("tr")[0].outerHTML;
-	} else {
-		sHTML = window.document.getElementById(sDisplay + "-template").innerHTML;
-	}
-
-	sHTML = sHTML.replace("[[id]]", typeof oRepo.id === "string" ? "'" + oRepo.id + "'" : oRepo.id);
-
 	let sLogoURL = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.logo
 		? oRepo._InnerSourceMetadata.logo.startsWith("http") || oRepo._InnerSourceMetadata.logo.startsWith("./")
 			? oRepo._InnerSourceMetadata.logo
 			: "data/" + oRepo._InnerSourceMetadata.logo + (oRepo._InnerSourceMetadata.logo.split(".").pop() === "svg" ? "?sanitize=true" : "")
 		: oRepo.owner.avatar_url;
-	sHTML = sHTML.replace("[[mediaURL]]", sLogoURL);
 
 	let sTitle = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.title
 		? oRepo._InnerSourceMetadata.title
 		: readableRepoName(oRepo.name);
-	sHTML = sHTML.replace("[[title]]", sTitle);
-
-	sHTML = sHTML.replace("[[repoURL]]", oRepo.html_url);
-	sHTML = sHTML.replace("[[repoTitle]]", oRepo.owner.login + "/" + oRepo.name);
 
 	let sDescription = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.motivation
 		? oRepo._InnerSourceMetadata.motivation
 		: oRepo.description !== null
 			? oRepo.description
 			: "";
-	sHTML = sHTML.replace("[[description]]", sDescription);
-
-	sHTML = sHTML.replace("[[stars]]", oRepo.stargazers_count);
-	sHTML = sHTML.replace("[[issues]]", oRepo.open_issues_count);
-	sHTML = sHTML.replace("[[forks]]", oRepo.forks_count);
-
-	let [iScoreImage, ] = getRepoActivity(oRepo);
-	sHTML = sHTML.replace("[[score]]", iScoreImage);
-
-	sHTML = sHTML.replace("[[language]]", getRepoLanguage(oRepo.language));
 
 	let sContributeURL = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.docs
 		? oRepo._InnerSourceMetadata.docs
 		: oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.guidelines
 			? `${oRepo.html_url}/blob/${oRepo.default_branch}/${oRepo._InnerSourceMetadata.guidelines}`
 			: oRepo.html_url;
-	sHTML = sHTML.replace("[[contributeURL]]", sContributeURL);
 
-	return sHTML;
+	let oContext = {
+		"id" : (typeof oRepo.id === "string" ? "'" + oRepo.id + "'" : oRepo.id),
+		"mediaURL": sLogoURL,
+		"title": sTitle,
+		"repoURL": oRepo.html_url,
+		"repoTitle": oRepo.owner.login + "/" + oRepo.name,
+		"description": sDescription,
+		"stars": oRepo.stargazers_count,
+		"issues": oRepo.open_issues_count,
+		"forks": oRepo.forks_count,
+		"score": getRepoActivity(oRepo)[0],
+		"language": getRepoLanguage(oRepo.language),
+		"contributeURL": sContributeURL
+	};
+
+	// execute pre-compiled template function
+	return window._globals.templates[sDisplay](oContext);
 }
 
 // load repos.json file and display the list of projects from it
 window.document.addEventListener("DOMContentLoaded", function() {
+	// load data
 	let oXHR = new XMLHttpRequest();
 	oXHR.open("GET", "repos.json");
 	oXHR.onload = () => {
@@ -408,26 +404,32 @@ window.document.addEventListener("DOMContentLoaded", function() {
 			fillLanguageFilter();
 			updateUI();
 			// show number of projects in header
-			document.getElementById("count").innerText = window._globals.allRepos.length;
+			window.document.getElementById("count").innerText = window._globals.allRepos.length;
 		} else {
 			console.log("Request failed.	Returned status of " + oXHR.status);
 		}
 	};
 	oXHR.send();
 
-	document.getElementById("sort").addEventListener("change", function () {
+	// init templates
+	window._globals.templates.card = Handlebars.compile(window.document.getElementById("card-template").innerHTML);
+	window._globals.templates.list = Handlebars.compile(window.document.getElementById("list-template").innerHTML);
+	window._globals.templates.score = Handlebars.compile(window.document.getElementById("score-template").innerHTML);
+	window._globals.templates.language = Handlebars.compile(window.document.getElementById("language-template").innerHTML);
+	window._globals.templates.details = Handlebars.compile(window.document.getElementById("details-template").innerHTML);
+	window._globals.templates.participation = Handlebars.compile(window.document.getElementById("participation-template").innerHTML);
+
+	// init filters
+	window.document.getElementById("sort").addEventListener("change", function () {
 		sort(this.value);
 	});
-
-	document.getElementById("filter").addEventListener("change", function () {
+	window.document.getElementById("filter").addEventListener("change", function () {
 		filter(this.value);
 	});
-
-	document.getElementById("search").addEventListener("keyup", function () {
+	window.document.getElementById("search").addEventListener("keyup", function () {
 		search(this.value);
 	});
-
-	document.getElementById("display").addEventListener("change", function () {
+	window.document.getElementById("display").addEventListener("change", function () {
 		display(this.checked ? "card" : "list");
 	});
 });
@@ -457,7 +459,7 @@ function fillLanguageFilter () {
 
 // sneak in language icons
 function addLanguageIconsToFilter() {
-	let aItems = document.getElementById("filter").parentNode.getElementsByTagName("li");
+	let aItems = window.document.getElementById("filter").parentNode.getElementsByTagName("li");
 	for (let i = 0; i < aItems.length; i++) {
 		if (aItems[i].innerText !== "All" && aItems[i].innerText !== "Other") {
 			aItems[i].innerHTML = getRepoLanguage(aItems[i].innerText) + aItems[i].innerHTML;
@@ -581,7 +583,7 @@ function display (sParam) {
 		createContent(window._globals.sortFilterSearchRepos);
 	}
 	// toggle content
-	document.getElementById(sParam !== "list" ? "rows" : "cards").innerHTML = "";
-	document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
-	document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
+	window.document.getElementById(sParam !== "list" ? "rows" : "cards").innerHTML = "";
+	window.document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
+	window.document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
 }
