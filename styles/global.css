@@ -142,8 +142,8 @@ td > div {
   align-items: center;
 }
 
-/* make images same size as other icons */
-.icon-container img {
+/* make score images same size as other icons */
+.score img {
   width: 2rem;
   min-height: 2rem;
 }
@@ -155,12 +155,12 @@ td .language{
   background-color: #444;
   color: white;
   border-radius: 1rem;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
   overflow: hidden;
   text-align: center;
-  min-width: 30px !important;
+  min-width: 2rem !important;
 }
 
 /* styles for language indicator in filter bar */

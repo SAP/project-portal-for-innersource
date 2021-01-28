@@ -93,147 +93,154 @@
     <!-- modal placeholder -->
     <div id="modal-details" class="modal"></div>
 
-    <!-- HTML templates (filled in scripts) -->
-    <div id="templates" style="display: none">
-      <!-- card template -->
-      <div id="card-template">
+    <!-- handlebars templates (filled in script) -->
+    <script id="card-template" type="text/x-handlebars-template">
+      <div>
         <div class="col l4 s12 m6">
-          <div class="card hoverable" onclick="showModal([[id]], event)">
+          <div class="card hoverable" onclick="showModal({{id}}, event)">
             <div class="card-content">
               <span class="card-media">
-                <img src="[[mediaURL]]"/>
+                <img src="{{mediaURL}}"/>
               </span>
-              <div class="card-title">[[title]]
-                <p class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></p>
+              <div class="card-title">{{title}}
+                <p class="repoLink"><a href="{{repoURL}}" target="_blank">{{repoTitle}}</a></p>
               </div>
-              <div class="card-description">[[description]]</div>
+              <div class="card-description">{{description}}</div>
               <div class="icon-container">
                 <div class="tooltipped" data-position="top" data-tooltip="Stars">
                   <i class="small material-icons">star</i>
-                  <span class="icon-subtitle">[[stars]]</span>
+                  <span class="icon-subtitle">{{stars}}</span>
                 </div>
                 <div class="tooltipped" data-position="top" data-tooltip="Issues">
                   <i class="small material-icons">error</i>
-                  <span class="icon-subtitle">[[issues]]</span>
+                  <span class="icon-subtitle">{{issues}}</span>
                 </div>
                 <div class="tooltipped" data-position="top" data-tooltip="Forks">
                   <i class="small material-icons">share</i>
-                  <span class="icon-subtitle">[[forks]]</span>
+                  <span class="icon-subtitle">{{forks}}</span>
                 </div>
                 <div>
-                  [[score]]
+                  {{{score}}}
                 </div>
                 <div>
-                  [[language]]
+                  {{{language}}}
                 </div>
               </div>
             </div>
             <div class="blue card-action darken-1">
-              <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
+              <a class="white-text" href="{{contributeURL}}" target="_blank">CONTRIBUTE</a>
             </div>
           </div>
         </div>
       </div>
+    </script>
 
-      <!-- row template -->
-      <div id="row-template">
-        <table width="100%">
-          <tr onclick="showModal([[id]], event)">
-            <td><span class="card-media"><img src="[[mediaURL]]"/></span></td>
-            <td><b>[[title]]</b><br/>
-              <span class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></span></td>
-            <td class="hidePhone hideTablet"><div class="card-description">[[description]]</div></td>
-            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Stars">
-              <i class="small material-icons">star</i>
-              <span class="icon-subtitle">[[stars]]</span>
-            </div></td>
-            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Issues">
-              <i class="small material-icons">error</i>
-              <span class="icon-subtitle">[[issues]]</span>
-            </div></td>
-            <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Forks">
-              <i class="small material-icons">share</i>
-              <span class="icon-subtitle">[[forks]]</span>
-            </div></td>
-            <td>[[score]]</td>
-            <td>[[language]]</td>
-            <td class="hidePhone"><div class="blue card-action darken-1">
-              <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
-            </div></td>
-          </tr>
-        </table>
-      </div>
+    <script id="list-template" type="text/x-handlebars-template">
+        <tr onclick="showModal({{id}}, event)">
+          <td><span class="card-media"><img src="{{mediaURL}}"/></span></td>
+          <td><b>{{title}}</b><br/>
+            <span class="repoLink"><a href="{{repoURL}}" target="_blank">{{repoTitle}}</a></span></td>
+          <td class="hidePhone hideTablet"><div class="card-description">{{description}}</div></td>
+          <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Stars">
+            <i class="small material-icons">star</i>
+            <span class="icon-subtitle">{{stars}}</span>
+          </div></td>
+          <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Issues">
+            <i class="small material-icons">error</i>
+            <span class="icon-subtitle">{{issues}}</span>
+          </div></td>
+          <td class="hidePhone hideTablet"><div class="tooltipped" data-position="top" data-tooltip="Forks">
+            <i class="small material-icons">share</i>
+            <span class="icon-subtitle">{{forks}}</span>
+          </div></td>
+          <td>{{{score}}}</td>
+          <td>{{{language}}}</td>
+          <td class="hidePhone"><div class="blue card-action darken-1">
+            <a class="white-text" href="{{contributeURL}}" target="_blank">CONTRIBUTE</a>
+          </div></td>
+        </tr>
+    </script>
 
-      <!-- modal template -->
-      <div id="details-template">
-        <div class="modal-content">
-          <aside>
+    <script id="score-template" type="text/x-handlebars-template">
+      <img class="score tooltipped" data-position="top" data-tooltip="Activity: {{level}}" alt="Activity: {{level}}" src="{{logo}}"/>
+    </script>
+
+    <script id="language-template" type="text/x-handlebars-template">
+      <div class="language tooltipped" style="{{#if color}}background-color: {{color}};{{/if}}{{#if fontSize}}font-size: {{fontSize}}{{/if}}" data-position="top" data-tooltip="Language: {{language}}">{{languageShort}}</div>`
+    </script>
+
+    <script id="details-template" type="text/x-handlebars-template">
+      <div class="modal-content">
+        <aside>
             <span class="card-media">
-              <img src="[[mediaURL]]"/>
+              <img src="{{mediaURL}}"/>
             </span>
-            <div class="icon-container">
-              <div class="tooltipped" data-position="top" data-tooltip="Stars">
-                <i class="small material-icons">star</i>
-                <span class="icon-subtitle">[[stars]]</span>
-              </div>
-              <div class="tooltipped" data-position="top" data-tooltip="Issues">
-                <i class="small material-icons">error</i>
-                <span class="icon-subtitle">[[issues]]</span>
-              </div>
-              <div class="tooltipped" data-position="top" data-tooltip="Forks">
-                <i class="small material-icons">share</i>
-                <span class="icon-subtitle">[[forks]]</span>
-              </div>
-              <div>
-                [[score]]
-              </div>
-              <div>
-                [[language]]
-              </div>
+          <div class="icon-container">
+            <div class="tooltipped" data-position="top" data-tooltip="Stars">
+              <i class="small material-icons">star</i>
+              <span class="icon-subtitle">{{stars}}</span>
             </div>
-          </aside>
-
-          <article>
-            <h4>[[title]]</h4>
-            <p class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></p>
-            <p>[[description]]</p>          
-            [[#if topics]]<p><b>Topics:</b><br/>[[topics]]</p>[[/if]]
-            [[#if skills]]<p><b>Skills required:</b><br/>[[skills]]</p>[[/if]]
-            <p><b>Contributions wanted:</b><br/>[[contributions]]</p>
-            [[#if documentationURL]]<p><b>Documentation:</b><br/><a href="[[documentationURL]]" target="_blank">[[documentationURL]]</a></p>[[/if]]
-            <p><b>Created at:</b> [[createdAt]]</p>
-            <p><b>Last update:</b> [[lastUpdate]]</p>
-            <p><b>Activity Score:</b> [[scoreNumeric]]</p>
-            <p><b>Average commits over the last year:</b><br/>
-            <div id="participationChart" class="participationChart"></div></p>
-          </article>
-
-          <a href="#!" class="modal-close waves-effect btn-flat">x</a>
-        </div>
-        <div class="modal-footer">
-          <div class="blue card-action darken-1">
-            <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
+            <div class="tooltipped" data-position="top" data-tooltip="Issues">
+              <i class="small material-icons">error</i>
+              <span class="icon-subtitle">{{issues}}</span>
+            </div>
+            <div class="tooltipped" data-position="top" data-tooltip="Forks">
+              <i class="small material-icons">share</i>
+              <span class="icon-subtitle">{{forks}}</span>
+            </div>
+            <div>
+              {{{score}}}
+            </div>
+            <div>
+              {{{language}}}
+            </div>
           </div>
+        </aside>
+
+        <article>
+          <h4>{{title}}</h4>
+          <p class="repoLink"><a href="{{repoURL}}" target="_blank">{{repoTitle}}</a></p>
+          <p>{{description}}</p>
+          {{#if topics}}<p><b>Topics:</b><br/>
+            {{#each topics}}{{#if this}}<span class='pill'>{{this}}</span> {{/if}}{{/each}}
+          </p>{{/if}}
+          {{#if skills}}<p><b>Skills required:</b><br/> {{#each skills}}{{this}}<br/>{{/each}}</p>{{/if}}
+          <p><b>Contributions wanted:</b><br/> {{#each contributions}}{{this}}<br/>{{/each}}</p>
+          {{#if documentationURL}}<p><b>Documentation:</b><br/><a href="{{documentationURL}}" target="_blank">{{documentationURL}}</a></p>{{/if}}
+          <p><b>Created at:</b> {{createdAt}}</p>
+          <p><b>Last update:</b> {{lastUpdate}}</p>
+          <p><b>Activity Score:</b> {{scoreNumeric}}</p>
+          <p><b>Average commits over the last year:</b><br/>
+          <div id="participationChart" class="participationChart"></div></p>
+        </article>
+
+        <a href="#!" class="modal-close waves-effect btn-flat">x</a>
+      </div>
+      <div class="modal-footer">
+        <div class="blue card-action darken-1">
+          <a class="white-text" href="{{contributeURL}}" target="_blank">CONTRIBUTE</a>
         </div>
       </div>
+    </script>
 
-      <!-- participation template -->
-      <div id="participation-template">
-        <div class="thisWeek [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>
-        [[#foreach weeks]]<div class="previousWeeks [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>[[/foreach]]
+    <script id="participation-template" type="text/x-handlebars-template">
+        <div class="thisWeek {{#if thisWeek.commits}}hasCommits{{/if}}"{{#if thisWeek.color}} style="background-color: {{thisWeek.color}}"{{/if}}><div class="text">{{thisWeek.commits}}</div></div>
+        {{#each weeksPrevious}}<div class="previousWeeks {{#if this.commits}}hasCommits{{/if}}"{{#if this.color}} style="background-color: {{this.color}}"{{/if}}><div class="text">{{this.commits}}</div></div>{{/each}}
+        {{#if weeksPrevious}}
         <div class="legend">
-          <div class="thisWeekLegend">This week</div><div class="previousWeeksLegend">In previous [[previousWeeks]]</div>
+          <div class="thisWeekLegend">This week</div><div class="previousWeeksLegend">In previous {{weeksPreviousLabel}}</div>
         </div>
-        [[#foreach before]]<div class="previousMonths [[hasCommits]]" style="[[backgroundColor]]"><div class="text">[[commits]]</div></div>[[/foreach]]
-        [[#if weeksBefore]]
+        {{/if}}
+        {{#each weeksBefore}}<div class="previousMonths {{#if this.commits}}hasCommits{{/if}}"{{#if this.color}} style="background-color: {{this.color}}"{{/if}}"><div class="text">{{this.commits}}</div></div>{{/each}}
+        {{#if weeksBefore}}
         <div class="legend">
-          <div class="previousMonthsLegend">In the [[weeksBefore]]</div>
+          <div class="previousMonthsLegend">In the {{weeksBeforeLabel}}</div>
         </div>
-        [[/if]]
-      </div>
-    </div>
-
+        {{/if}}
+    </script>
+    
     <!-- thirdparty libraries -->
+    <script src="lib/handlebars.js"></script>
     <script src="lib/materialize.min.js"></script>
     <script src="lib/moment.min.js"></script>
     <script src="lib/seedrandom.min.js"></script>
