@@ -5,9 +5,6 @@ const fs = require('fs-extra');
 // declare all dependencies
 const sLibraryPath = "./lib/";
 const oLibraries = {
-    "jquery": [
-        "./node_modules/jquery/dist/jquery.min.js"
-    ],
     "materialize-css": [
         "./node_modules/materialize-css/dist/css/materialize.min.css",
         "./node_modules/materialize-css/dist/js/materialize.min.js"

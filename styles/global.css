@@ -30,6 +30,11 @@ nav {
   font-weight: bold;
 }
 
+/* space between header and content */
+.container {
+  margin-top: 20px;
+}
+
 /*** Cards ***/
 
 /* less padding for cards */
@@ -74,6 +79,12 @@ nav {
   max-width: 100%;
   height: 70px;
   vertical-align: middle;
+}
+
+/* emphasize contribute action */
+.card-action {
+  text-align: center;
+  font-weight: bold;
 }
 
 /* adjust link size and truncate text */
@@ -384,6 +395,11 @@ table.list {
   width: 100%;
 }
 
+/* adjust cursor for rows */
+table.list tr {
+  cursor: pointer;
+}
+
 /* center logo and action table heading */
 table.list th:nth-child(1),
 table.list th:nth-last-child(1) {
@@ -484,6 +500,11 @@ table.list td .card-description {
 /* round corners for cards */
 .card {
   border-radius: 12px;
+}
+
+/* adjust cursor for cards */
+.card.hoverable {
+  cursor: pointer;
 }
 
 /* round corners for contribute link */

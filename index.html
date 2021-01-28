@@ -21,7 +21,7 @@
       </div>
     </nav>
 
-    <div style="margin-top: 20px;" class="container">
+    <div class="container">
       <!-- filter/sort/search bar -->
       <div class="row">
         <div class="input-field col l3 m6 s6">
@@ -98,7 +98,7 @@
       <!-- card template -->
       <div id="card-template">
         <div class="col l4 s12 m6">
-          <div class="card hoverable" onclick="showModal([[id]], event)" style="cursor: pointer">
+          <div class="card hoverable" onclick="showModal([[id]], event)">
             <div class="card-content">
               <span class="card-media">
                 <img src="[[mediaURL]]"/>
@@ -128,7 +128,7 @@
                 </div>
               </div>
             </div>
-            <div style="text-align: center; font-weight: bold;" class="blue card-action darken-1">
+            <div class="blue card-action darken-1">
               <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
             </div>
           </div>
@@ -138,7 +138,7 @@
       <!-- row template -->
       <div id="row-template">
         <table width="100%">
-          <tr onclick="showModal([[id]], event)" style="cursor: pointer">
+          <tr onclick="showModal([[id]], event)">
             <td><span class="card-media"><img src="[[mediaURL]]"/></span></td>
             <td><b>[[title]]</b><br/>
               <span class="repoLink"><a href="[[repoURL]]" target="_blank">[[repoTitle]]</a></span></td>
@@ -157,7 +157,7 @@
             </div></td>
             <td>[[score]]</td>
             <td>[[language]]</td>
-            <td class="hidePhone"><div style="text-align: center; font-weight: bold;" class="blue card-action darken-1">
+            <td class="hidePhone"><div class="blue card-action darken-1">
               <a class="white-text" href="[[contributeURL]]" target="_blank">CONTRIBUTE</a>
             </div></td>
           </tr>
@@ -234,7 +234,6 @@
     </div>
 
     <!-- thirdparty libraries -->
-    <script src="lib/jquery.min.js"></script>
     <script src="lib/materialize.min.js"></script>
     <script src="lib/moment.min.js"></script>
     <script src="lib/seedrandom.min.js"></script>

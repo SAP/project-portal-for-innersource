@@ -31,28 +31,23 @@ function createContent(aItems) {
   oURL.search = window.location.hash.substring(1);
   const sDisplay = oURL.searchParams.get("display") || "card";
   // generate and show HTML
-  const sResult = aItems.map((oItem) => generateItem(sDisplay, oItem));
-  updateContent(sDisplay, sResult);
+  const sResult = aItems.map((oItem) => generateItem(sDisplay, oItem)).join ("");
+  updateContent(sDisplay, sResult, aItems);
 }
 
 // updates the content area
-function updateContent(sDisplay, sResult) {
+function updateContent(sDisplay, sResult, aItems) {
   // flush html
-  $("#" + (sDisplay === "card" ? "card" : "row") + "s").html(sResult);
-  // update result count in search placeholder
-  $("#search + label").text(`Search ${sResult.length} projects...`);
-  // replace broken images with a meaningful default image
-  // side-note: tools.sap requires login to display avatars
-  $("img").on("error", function () {
-    Math.seedrandom($(this).attr("src"));
-    $(this).attr(
-        "src",
-        "images/default" + (Math.floor(Math.random() * 3) + 1) + ".png"
-    );
-    Math.seedrandom();
-  });
+  document.getElementById((sDisplay === "card" ? "card" : "row") + "s").innerHTML = sResult;
 
-  $(".tooltipped").tooltip(); //initialise tooltips
+  // update result count in search placeholder
+  document.getElementById('search').labels[0].innerText = `Search ${aItems.length} projects...`;
+
+  // replace broken images with a  default image
+  registerFallbackImage(document);
+
+  // initialize tooltips
+  M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 }
 
 // updates UI state based on Hash
@@ -84,6 +79,18 @@ function updateHash(sKey, sValue) {
   setTimeout(function () {
     window._globals.ignoreNextHashChange = false;
   }, 1000);
+}
+
+// replace broken images with a default image
+function registerFallbackImage(oNode) {
+  aImages = oNode.getElementsByTagName("img");
+  for (let i = 0; i < aImages.length; i++) {
+    aImages[i].addEventListener("error", function () {
+      Math.seedrandom(this.src);
+      this.src = "images/default" + (Math.floor(Math.random() * 3) + 1) + ".png"
+      Math.seedrandom();
+    });
+  }
 }
 
 // helper function to display each language in a different static colour
@@ -327,18 +334,11 @@ function showModal (vRepoId, oEvent) {
       updateHash("details", undefined);
     }
   });
-  $(".tooltipped").tooltip(); //initialise tooltip
+  // initialize tooltips
+  M.Tooltip.init(oModalWrapper.querySelectorAll('.tooltipped'));
 
-  // replace broken images with a meaningful default image
-  // side-note: tools.sap requires login to display avatars
-  $(".modal img").on("error", function () {
-    Math.seedrandom($(this).attr("src"));
-    $(this).attr(
-        "src",
-        "images/default" + (Math.floor(Math.random() * 3) + 1) + ".png"
-    );
-    Math.seedrandom();
-  });
+  // replace broken images with a  default image
+  registerFallbackImage(oModalWrapper);
 
   // open dialog
   M.Modal.getInstance(oModalWrapper).open();
@@ -395,40 +395,39 @@ function generateItem (sDisplay, oRepo) {
           : oRepo.html_url;
   sHTML = sHTML.replace("[[contributeURL]]", sContributeURL);
 
-  return $(sHTML);
+  return sHTML;
 }
 
 // load repos.json file and display the list of projects from it
-$(window.document).ready(() => {
-  $.ajax({
-    url: `repos.json`,
-    type: `GET`,
-    dataType: "json",
-    success: (oData) => {
-      window._globals.allRepos = oData;
+window.document.addEventListener("DOMContentLoaded", function(event) {
+  let oXHR = new XMLHttpRequest();
+  oXHR.open('GET', 'repos.json');
+  oXHR.onload = () => {
+    if (oXHR.status === 200) {
+      window._globals.allRepos = JSON.parse(oXHR.responseText);
       fillLanguageFilter();
       updateUI();
       // show number of projects in header
-      $("#count").text(oData.length);
-    },
-    error: (oHR, sStatus) => {
-      console.log(oHR, sStatus);
+      document.getElementById("count").innerText = window._globals.allRepos.length;
+    } else {
+      alert('Request failed.  Returned status of ' + oXHR.status);
     }
-  });
+  };
+  oXHR.send();
 
-  $("select#sort").on("change", function () {
+  document.getElementById("sort").addEventListener("change", function () {
     sort(this.value);
   });
 
-  $("select#filter").on("change", function () {
+  document.getElementById("filter").addEventListener("change", function () {
     filter(this.value);
   });
 
-  $("input#search").on("keyup", function () {
+  document.getElementById("search").addEventListener("keyup", function () {
     search(this.value);
   });
 
-  $("input#display").on("change", function () {
+  document.getElementById("display").addEventListener("change", function () {
     display(this.checked ? "card" : "list");
   });
 });
@@ -452,17 +451,18 @@ function fillLanguageFilter () {
     oFilter.add(oOption, 1);
   });
   // initialize all filters
-  $("select").formSelect();
+  M.FormSelect.init(document.querySelectorAll('select'));
   addLanguageIconsToFilter();
 }
 
 // sneak in language icons
 function addLanguageIconsToFilter() {
-  $("#filter").siblings("ul").find("li").each((iIndex, oItem) => {
-    if ($(oItem).text() !== "All" && $(oItem).text() !== "Other") {
-      $(oItem).html(getRepoLanguage($(oItem).text()) + $(oItem).html());
+  let aItems = document.getElementById("filter").parentNode.getElementsByTagName("li");
+  for (let i = 0; i < aItems.length; i++) {
+    if (aItems[i].innerText !== "All" && aItems[i].innerText !== "Other") {
+      aItems[i].innerHTML = getRepoLanguage(aItems[i].innerText) + aItems[i].innerHTML;
     }
-  });
+  }
 }
 
 // sort the cards by chosen parameter (additive, combines filter or search)
@@ -563,6 +563,7 @@ function search(sParam) {
   const oSelect = window.document.getElementById("filter");
   oSelect.selectedIndex = 0;
   M.FormSelect.init(oSelect);
+  addLanguageIconsToFilter();
 }
 
 // toggles the display between card and table view
@@ -573,14 +574,14 @@ function display(sParam) {
   window.document.getElementsByClassName("switch")[0].getElementsByTagName("i")[sParam !== "list" ? 1 : 0].classList.add("active");
   window.document.getElementsByClassName("switch")[0].getElementsByTagName("i")[sParam !== "list" ? 0 : 1].classList.remove("active");
   // only create content when mode has changed
-  if (!$("#" + (sParam !== "list" ? "cards" : "rows")).html()) {
+  if (!document.getElementById(sParam !== "list" ? "cards" : "rows").innerHTML) {
     // store context
     updateHash("display", sParam);
     // create content
     createContent(window._globals.sortFilterSearchRepos);
   }
   // toggle content
-  $("#" + (sParam !== "list" ? "rows" : "cards")).html("");
-  $("#" + (sParam !== "list" ? "cards" : "list")).css("display", "block");
-  $("#" + (sParam !== "list" ? "list" : "cards")).attr("style", "display: none !important");
+  document.getElementById(sParam !== "list" ? "rows" : "cards").innerHTML = "";
+  document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
+  document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
 }
