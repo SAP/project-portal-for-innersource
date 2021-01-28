@@ -98,7 +98,6 @@ Please check our [contributing guidelines](CONTRIBUTING.md) for more details.
 
 We use the following open source frameworks to create the portal:
 
-* [jQuery](https://jquery.com/)
 * [Materialize](https://materializecss.com/)
 * [Material-Icons](https://www.npmjs.com/package/material-icons)
 * [Moment.js](https://momentjs.com/)
