@@ -563,6 +563,7 @@ function search(sParam) {
   const oSelect = window.document.getElementById("filter");
   oSelect.selectedIndex = 0;
   M.FormSelect.init(oSelect);
+  addLanguageIconsToFilter();
 }
 
 // toggles the display between card and table view
