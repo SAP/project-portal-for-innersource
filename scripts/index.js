@@ -38,16 +38,16 @@ function createContent (aItems) {
 // updates the content area
 function updateContent (sDisplay, sResult, aItems) {
 	// flush html
-	document.getElementById((sDisplay === "card" ? "card" : "row") + "s").innerHTML = sResult;
+	window.document.getElementById((sDisplay === "card" ? "card" : "row") + "s").innerHTML = sResult;
 
 	// update result count in search placeholder
-	document.getElementById("search").labels[0].innerText = `Search ${aItems.length} projects...`;
+	window.document.getElementById("search").labels[0].innerText = `Search ${aItems.length} projects...`;
 
 	// replace broken images with a	default image
-	registerFallbackImage(document);
+	registerFallbackImage(window.document);
 
 	// initialize tooltips
-	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+	M.Tooltip.init(window.document.querySelectorAll(".tooltipped"));
 }
 
 // updates UI state based on Hash
@@ -408,26 +408,26 @@ window.document.addEventListener("DOMContentLoaded", function() {
 			fillLanguageFilter();
 			updateUI();
 			// show number of projects in header
-			document.getElementById("count").innerText = window._globals.allRepos.length;
+			window.document.getElementById("count").innerText = window._globals.allRepos.length;
 		} else {
 			console.log("Request failed.	Returned status of " + oXHR.status);
 		}
 	};
 	oXHR.send();
 
-	document.getElementById("sort").addEventListener("change", function () {
+	window.document.getElementById("sort").addEventListener("change", function () {
 		sort(this.value);
 	});
 
-	document.getElementById("filter").addEventListener("change", function () {
+	window.document.getElementById("filter").addEventListener("change", function () {
 		filter(this.value);
 	});
 
-	document.getElementById("search").addEventListener("keyup", function () {
+	window.document.getElementById("search").addEventListener("keyup", function () {
 		search(this.value);
 	});
 
-	document.getElementById("display").addEventListener("change", function () {
+	window.document.getElementById("display").addEventListener("change", function () {
 		display(this.checked ? "card" : "list");
 	});
 });
@@ -457,7 +457,7 @@ function fillLanguageFilter () {
 
 // sneak in language icons
 function addLanguageIconsToFilter() {
-	let aItems = document.getElementById("filter").parentNode.getElementsByTagName("li");
+	let aItems = window.document.getElementById("filter").parentNode.getElementsByTagName("li");
 	for (let i = 0; i < aItems.length; i++) {
 		if (aItems[i].innerText !== "All" && aItems[i].innerText !== "Other") {
 			aItems[i].innerHTML = getRepoLanguage(aItems[i].innerText) + aItems[i].innerHTML;
@@ -581,7 +581,7 @@ function display (sParam) {
 		createContent(window._globals.sortFilterSearchRepos);
 	}
 	// toggle content
-	document.getElementById(sParam !== "list" ? "rows" : "cards").innerHTML = "";
-	document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
-	document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
+	window.document.getElementById(sParam !== "list" ? "rows" : "cards").innerHTML = "";
+	window.document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
+	window.document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
 }
