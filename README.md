@@ -4,7 +4,7 @@ A reference implementation to list all InnerSource projects of a company in an i
 It can be used as a template for implementing the [InnerSource portal pattern](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
 
 
-## Demo 
+## Demo
 
 A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/index.html).
 
@@ -31,7 +31,7 @@ Install [nodejs](https://nodejs.org/en/).
 ## Installation
 
 1. Fork and clone this repository
-  
+
 2. Install nodejs dependencies
 
 ``` shell script
@@ -50,40 +50,13 @@ npm start
 
 4. Start developing!
 
-## Configuration
+## Configuration & Crawling
 
-The portal uses a static ```repos.json``` file with mock data for testing and developing purposes. In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture:
+The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
+
+In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. For the full details on the crawling process see the [Crawling Documentation](CRAWLING.md).
 
 ![Crawling InnerSource projects](ecosystem.png)
-
-To do so, apply the following steps:
-
-1. Crawl all projects with the topic `inner-source` in your GitHub instance using the [GitHub search API](https://developer.github.com/v3/search/):
-
-   ```
-   ?q=topic:inner-source
-   ```
-
-   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields. 
-   
-   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query, depending on how InnerSource repositories are characterized in your environment. 
-
-2. For each resulting project add a key ```_InnerSourceMetadata``` to the result from the GitHub API call and fill it with additional metadata about the project:
-
-   * Check if there is a file ```innersource.json``` in the repository and add all keys directly below ```_InnerSourceMetadata```.
-
-   * Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation` 
-
-   * (Optional) Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
-   
-   * (Optional) Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
-
-   * (Optional) Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Sort entries by score descending. Add it with the key `score`
-
-3. Write the resulting list of projects with all metadata to the file ```repos.json``` to serve all projects in the portal.
-
-With this approach, projects can self-register to the portal by adding the ```inner-source``` topic to their repository and specifying additional metadata inside an ```innersource.json``` file.
-For more information about this file, see [Listing Project in the Project Portal for InnerSource](CONTRIBUTING.md#listing-project-in-the-project-portal-for-innersource)
 
 ## Limitations
 
