@@ -6,7 +6,7 @@ In a productive environment, consider adding an automated crawler script that fe
 
 ## Step-by-step Crawling Logic
 
-![Crawling InnerSource projects](../ecosystem.png)
+![Crawling InnerSource projects](ecosystem.png)
 
 To do so, apply the following steps:
 
