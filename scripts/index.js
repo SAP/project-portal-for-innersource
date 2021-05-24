@@ -313,7 +313,7 @@ function showModal (vRepoId, oEvent) {
 		"repoURL": oRepo.html_url,
 		"repoTitle": oRepo.owner.login + "/" + oRepo.name,
 		"description": sDescription,
-		"topics": oRepo.topics,
+		"topics": oRepo._InnerSourceMetadata.topics,
 		"stars": oRepo.stargazers_count,
 		"issues": oRepo.open_issues_count,
 		"forks": oRepo.forks_count,
