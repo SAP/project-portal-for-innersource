@@ -75,13 +75,13 @@
         8
       ],
       "logo": "./images/demo/Earth.png",
-      "score": 3900
-    },
-    "topics": [
-      "earth",
-      "JavaScript",
-      "Sol"
-    ]
+      "score": 3900,
+      "topics": [
+        "earth",
+        "JavaScript",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 4711,
@@ -175,23 +175,23 @@
         "C++"
       ],
       "logo": "./images/demo/Mars.png",
-      "score": 3767
-    },
-    "topics": [
-      "mars",
-      "Groovy",
-      "Mars",
-      "some",
-      "more",
-      "topics",
-      "that",
-      "describe",
-      "this",
-      "repo",
-      "a",
-      "little",
-      "more"
-    ]
+      "score": 3767,
+      "topics": [
+        "mars",
+        "Groovy",
+        "Mars",
+        "some",
+        "more",
+        "topics",
+        "that",
+        "describe",
+        "this",
+        "repo",
+        "a",
+        "little",
+        "more"
+      ]
+    }
   },
   {
     "id": 7093,
@@ -359,10 +359,10 @@
         5,
         4
       ],
-      "score": 1635
-    },
-    "topics": [
-    ]
+      "score": 1635,
+      "topics": [
+      ]
+    }
   },
   {
     "id": 2222,
@@ -440,13 +440,13 @@
         0
       ],
       "logo": "./images/demo/Titan.png",
-      "score": 1168
-    },
-    "topics": [
-      "titan",
-      "Java",
-      "Saturn"
-    ]
+      "score": 1168,
+      "topics": [
+        "titan",
+        "Java",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 376172,
@@ -532,13 +532,13 @@
         "GitHub"
       ],
       "logo": "./images/demo/Phoebe.png",
-      "score": 1140
-    },
-    "topics": [
-      "Phoebe",
-      "JavaScript",
-      "Saturn"
-    ]
+      "score": 1140,
+      "topics": [
+        "Phoebe",
+        "JavaScript",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 1993,
@@ -609,15 +609,15 @@
         4,
         3
       ],
-      "score": 1074
+      "score": 1074,
+      "topics": [
+        "europa",
+        null,
+        "Jupiter"
+      ]
     },
     "updated_at": "2020-10-08T12:13:40.000Z",
-    "created_at": "2019-10-08T15:49:15.880Z",
-    "topics": [
-      "europa",
-      null,
-      "Jupiter"
-    ]
+    "created_at": "2019-10-08T15:49:15.880Z"
   },
   {
     "id": "0815",
@@ -704,13 +704,13 @@
       ],
       "language": "Markdown",
       "score": 907,
-      "logo": "./images/demo/Neptune.png"
-    },
-    "topics": [
-      "neptune",
-      null,
-      "Sol"
-    ]
+      "logo": "./images/demo/Neptune.png",
+      "topics": [
+        "neptune",
+        null,
+        "Sol"
+      ]
+    }
   },
   {
     "id": 86209,
@@ -797,13 +797,13 @@
         12,
         14
       ],
-      "score": 728
-    },
-    "topics": [
-      "auberon",
-      "Go",
-      "Colony"
-    ]
+      "score": 728,
+      "topics": [
+        "auberon",
+        "Go",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 6175,
@@ -892,13 +892,13 @@
         "Postgres"
       ],
       "logo": "./images/demo/Uranus.png",
-      "score": 672
-    },
-    "topics": [
-      "uranus",
-      "JavaScript",
-      "Sol"
-    ]
+      "score": 672,
+      "topics": [
+        "uranus",
+        "JavaScript",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 8759,
@@ -975,13 +975,13 @@
         1,
         2
       ],
-      "score": 615
-    },
-    "topics": [
-      "herculina",
-      "Dockerfile",
-      "Belt"
-    ]
+      "score": 615,
+      "topics": [
+        "herculina",
+        "Dockerfile",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 1610,
@@ -1059,13 +1059,13 @@
         0
       ],
       "logo": "./images/demo/Ganymede.png",
-      "score": 524
-    },
-    "topics": [
-      "ganymede",
-      "JavaScript",
-      "Jupiter"
-    ]
+      "score": 524,
+      "topics": [
+        "ganymede",
+        "JavaScript",
+        "Jupiter"
+      ]
+    }
   },
   {
     "id": 1022,
@@ -1142,13 +1142,13 @@
         2,
         11
       ],
-      "score": 428
-    },
-    "topics": [
-      "luna",
-      "Java",
-      "Sol"
-    ]
+      "score": 428,
+      "topics": [
+        "luna",
+        "Java",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 6161,
@@ -1226,13 +1226,13 @@
         0
       ],
       "guidelines": "CONTRIBUTING.md",
-      "score": 297
-    },
-    "topics": [
-      "laconia",
-      "JavaScript",
-      "Colony"
-    ]
+      "score": 297,
+      "topics": [
+        "laconia",
+        "JavaScript",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 7520,
@@ -1310,13 +1310,13 @@
         0
       ],
       "logo": "./images/demo/Gate.png",
-      "score": 268
-    },
-    "topics": [
-      "gate",
-      "JavaScript",
-      "Sol"
-    ]
+      "score": 268,
+      "topics": [
+        "gate",
+        "JavaScript",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 2921,
@@ -1393,13 +1393,13 @@
         0,
         1
       ],
-      "score": 262
-    },
-    "topics": [
-      "enceladus",
-      "JavaScript",
-      "Saturn"
-    ]
+      "score": 262,
+      "topics": [
+        "enceladus",
+        "JavaScript",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 2883,
@@ -1482,13 +1482,13 @@
         2,
         5
       ],
-      "score": 256
-    },
-    "topics": [
-      "cyllene",
-      "Ruby",
-      "Jupiter"
-    ]
+      "score": 256,
+      "topics": [
+        "cyllene",
+        "Ruby",
+        "Jupiter"
+      ]
+    }
   },
   {
     "id": 2674,
@@ -1566,13 +1566,13 @@
         0,
         0
       ],
-      "score": 220
-    },
-    "topics": [
-      "sol",
-      null,
-      "Sol"
-    ]
+      "score": 220,
+      "topics": [
+        "sol",
+        null,
+        "Sol"
+      ]
+    }
   },
   {
     "id": 1675,
@@ -1649,13 +1649,13 @@
         2,
         0
       ],
-      "score": 219
-    },
-    "topics": [
-      "saturn",
-      "Shell",
-      "Saturn"
-    ]
+      "score": 219,
+      "topics": [
+        "saturn",
+        "Shell",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 11924,
@@ -1733,13 +1733,13 @@
         0
       ],
       "guidelines": "CONTRIBUTING.md",
-      "score": 191
-    },
-    "topics": [
-      "naraka",
-      "Scala",
-      "Colony"
-    ]
+      "score": 191,
+      "topics": [
+        "naraka",
+        "Scala",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 2459,
@@ -1816,13 +1816,13 @@
         0,
         0
       ],
-      "score": 182
-    },
-    "topics": [
-      "pallas",
-      "JavaScript",
-      "Belt"
-    ]
+      "score": 182,
+      "topics": [
+        "pallas",
+        "JavaScript",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 1671,
@@ -1904,13 +1904,13 @@
         "Documentation",
         "Concept"
       ],
-      "score": 182
-    },
-    "topics": [
-      "iapetus",
-      null,
-      "Saturn"
-    ]
+      "score": 182,
+      "topics": [
+        "iapetus",
+        null,
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 290422,
@@ -1987,13 +1987,13 @@
         0,
         2
       ],
-      "score": 177
-    },
-    "topics": [
-      "hygiea",
-      "JavaScript",
-      "Belt"
-    ]
+      "score": 177,
+      "topics": [
+        "hygiea",
+        "JavaScript",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 6697,
@@ -2071,13 +2071,13 @@
         0
       ],
       "logo": "./images/demo/Mercury.png",
-      "score": 132
-    },
-    "topics": [
-      "mercury",
-      "TypeScript",
-      "Sol"
-    ]
+      "score": 132,
+      "topics": [
+        "mercury",
+        "TypeScript",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 24576,
@@ -2154,13 +2154,13 @@
         0,
         0
       ],
-      "score": 120
-    },
-    "topics": [
-      "hungaria",
-      "Go",
-      "Belt"
-    ]
+      "score": 120,
+      "topics": [
+        "hungaria",
+        "Go",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 300309,
@@ -2237,13 +2237,13 @@
         0,
         0
       ],
-      "score": 109
-    },
-    "topics": [
-      "eros",
-      "JavaScript",
-      "Belt"
-    ]
+      "score": 109,
+      "topics": [
+        "eros",
+        "JavaScript",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 3050,
@@ -2320,13 +2320,13 @@
         0,
         0
       ],
-      "score": 102
-    },
-    "topics": [
-      "arcadia",
-      "JavaScript",
-      "Colony"
-    ]
+      "score": 102,
+      "topics": [
+        "arcadia",
+        "JavaScript",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 7786,
@@ -2404,13 +2404,13 @@
         0
       ],
       "logo": "./images/demo/Io.png",
-      "score": 101
-    },
-    "topics": [
-      "Jupiter/io",
-      "HTML",
-      "Jupiter"
-    ]
+      "score": 101,
+      "topics": [
+        "Jupiter/io",
+        "HTML",
+        "Jupiter"
+      ]
+    }
   },
   {
     "id": 134340,
@@ -2498,13 +2498,13 @@
         "UX"
       ],
       "logo": "./images/demo/Pluto.png",
-      "score": 94
-    },
-    "topics": [
-      "pluto",
-      "JavaScript",
-      "Sol"
-    ]
+      "score": 94,
+      "topics": [
+        "pluto",
+        "JavaScript",
+        "Sol"
+      ]
+    }
   },
   {
     "id": 160481,
@@ -2581,13 +2581,13 @@
         0,
         0
       ],
-      "score": 80
-    },
-    "topics": [
-      "eugenia",
-      "Python",
-      "Belt"
-    ]
+      "score": 80,
+      "topics": [
+        "eugenia",
+        "Python",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 30310,
@@ -2675,13 +2675,13 @@
         "Java",
         "Kotlin"
       ],
-      "score": 70
-    },
-    "topics": [
-      "ilus",
-      "Java",
-      "Colony"
-    ]
+      "score": 70,
+      "topics": [
+        "ilus",
+        "Java",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 1877,
@@ -2758,13 +2758,13 @@
         0,
         0
       ],
-      "score": 70
-    },
-    "topics": [
-      "deimos",
-      "Groovy",
-      "Mars"
-    ]
+      "score": 70,
+      "topics": [
+        "deimos",
+        "Groovy",
+        "Mars"
+      ]
+    }
   },
   {
     "id": 1303,
@@ -2841,13 +2841,13 @@
         1,
         7
       ],
-      "score": 68
-    },
-    "topics": [
-      "jupiter",
-      "JavaScript",
-      "Jupiter"
-    ]
+      "score": 68,
+      "topics": [
+        "jupiter",
+        "JavaScript",
+        "Jupiter"
+      ]
+    }
   },
   {
     "id": 1672,
@@ -2925,13 +2925,13 @@
         0
       ],
       "logo": "./images/demo/Rhea.png",
-      "score": 62
-    },
-    "topics": [
-      "rhea",
-      "JavaScript",
-      "Saturn"
-    ]
+      "score": 62,
+      "topics": [
+        "rhea",
+        "JavaScript",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 74321,
@@ -3008,13 +3008,13 @@
         0,
         2
       ],
-      "score": 59
-    },
-    "topics": [
-      "tecoma",
-      "JavaScript",
-      "Colony"
-    ]
+      "score": 59,
+      "topics": [
+        "tecoma",
+        "JavaScript",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 1807,
@@ -3091,13 +3091,13 @@
         0,
         0
       ],
-      "score": 57
-    },
-    "topics": [
-      "vesta",
-      "TypeScript",
-      "Belt"
-    ]
+      "score": 57,
+      "topics": [
+        "vesta",
+        "TypeScript",
+        "Belt"
+      ]
+    }
   },
   {
     "id": 9378,
@@ -3175,13 +3175,13 @@
         0
       ],
       "logo": "./images/demo/Phobos.png",
-      "score": 55
-    },
-    "topics": [
-      "phobos",
-      "TypeScript",
-      "Mars"
-    ]
+      "score": 55,
+      "topics": [
+        "phobos",
+        "TypeScript",
+        "Mars"
+      ]
+    }
   },
   {
     "id": 1819,
@@ -3259,13 +3259,13 @@
         0
       ],
       "score": 50,
-      "logo": "./images/demo/Mimas.png"
-    },
-    "topics": [
-      "mimas",
-      "Groovy",
-      "Saturn"
-    ]
+      "logo": "./images/demo/Mimas.png",
+      "topics": [
+        "mimas",
+        "Groovy",
+        "Saturn"
+      ]
+    }
   },
   {
     "id": 57892,
@@ -3342,13 +3342,13 @@
         0,
         0
       ],
-      "score": 50
-    },
-    "topics": [
-      "charon",
-      "JavaScript",
-      "Colony"
-    ]
+      "score": 50,
+      "topics": [
+        "charon",
+        "JavaScript",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 16101,
@@ -3425,13 +3425,13 @@
         0,
         0
       ],
-      "score": 18
-    },
-    "topics": [
-      "callisto",
-      null,
-      "Jupiter"
-    ]
+      "score": 18,
+      "topics": [
+        "callisto",
+        null,
+        "Jupiter"
+      ]
+    }
   },
   {
     "id": 67343,
@@ -3508,13 +3508,13 @@
         0,
         0
       ],
-      "score": 5
-    },
-    "topics": [
-      "adro",
-      "JavaScript",
-      "Colony"
-    ]
+      "score": 5,
+      "topics": [
+        "adro",
+        "JavaScript",
+        "Colony"
+      ]
+    }
   },
   {
     "id": 5592,
@@ -3591,12 +3591,12 @@
         0,
         0
       ],
-      "score": 0
-    },
-    "topics": [
-      "oshima",
-      "ABAP",
-      "Belt"
-    ]
+      "score": 0,
+      "topics": [
+        "oshima",
+        "ABAP",
+        "Belt"
+      ]
+    }
   }
 ]
