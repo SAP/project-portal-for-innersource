@@ -531,24 +531,27 @@ function search(sParam) {
 	let sLowerCaseParam = sParam.toLowerCase();
 	let oResult = window._globals.allRepos.filter(
 		(repo) =>
-		// name
+			// name
 			repo.name.toLowerCase().includes(sLowerCaseParam) ||
 			// description
 			(repo.description && repo.description.toLowerCase().includes(sLowerCaseParam)) ||
-			// topics
-			(repo.topics && repo.topics.join(" ").toLowerCase().includes(sLowerCaseParam)) ||
 			// InnerSource metadata
 			(repo._InnerSourceMetadata &&
-				(
-					repo._InnerSourceMetadata.title &&
-					repo._InnerSourceMetadata.title.toLowerCase().includes(sLowerCaseParam) ||
-					repo._InnerSourceMetadata.motivation &&
-					repo._InnerSourceMetadata.motivation.toLowerCase().includes(sLowerCaseParam) ||
-					repo._InnerSourceMetadata.skills &&
-					repo._InnerSourceMetadata.skills.join(" ").toLowerCase().includes(sLowerCaseParam) ||
-					repo._InnerSourceMetadata.contributions &&
-					repo._InnerSourceMetadata.contributions.join(" ").toLowerCase().includes(sLowerCaseParam)
-				)
+				// topics
+				repo._InnerSourceMetadata.topics &&
+				repo._InnerSourceMetadata.topics.join(" ").toLowerCase().includes(sLowerCaseParam) ||
+				// custom title
+				repo._InnerSourceMetadata.title &&
+				repo._InnerSourceMetadata.title.toLowerCase().includes(sLowerCaseParam) ||
+				// motivation
+				repo._InnerSourceMetadata.motivation &&
+				repo._InnerSourceMetadata.motivation.toLowerCase().includes(sLowerCaseParam) ||
+				// skills
+				repo._InnerSourceMetadata.skills &&
+				repo._InnerSourceMetadata.skills.join(" ").toLowerCase().includes(sLowerCaseParam) ||
+				// contributions
+				repo._InnerSourceMetadata.contributions &&
+				repo._InnerSourceMetadata.contributions.join(" ").toLowerCase().includes(sLowerCaseParam)
 			)
 	);
 	window._globals.sortFilterSearchRepos = oResult;
