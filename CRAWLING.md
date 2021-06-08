@@ -20,7 +20,7 @@ The [repos.json](../repos.json) file contains an array of objects. Each object r
 
 The basic structure of each project object is:
 
-```
+``` json
 {
   "id": 2342,
   "name": "earth",
@@ -61,12 +61,12 @@ For a richer portal experience, you can add extended project information that is
 For each project retrieved in step (1), add a key ```_InnerSourceMetadata``` with an object containing the following metadata about the project:
 
 * `topics` (Optional): Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
-* `participation`: Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation`
-* `guidelines` (Optional): Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
+* `participation`: Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it. with the key `participation`
+* `guidelines` (Optional): Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button for this project will link to this file instead of the repository root.
 
 ### Step 3: (Optional) Custom Data
 
-You can customize the portal further with the following properties, that you can add to the aforementioned ```_InnerSourceMetadata``` object:
+You can customize the portal further with the following properties, that you can add to the ```_InnerSourceMetadata``` object explained in step (2):
 
 * `score` (Optional): Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Add it with the key `score`.
 * Check if there is a file ```innersource.json``` in the repository and add all keys from that file directly below ```_InnerSourceMetadata```. See below for further about the custom `innersource.json` file.
@@ -114,14 +114,13 @@ To provide more details or add a custom logo, add an `innersource.json` file in 
 
 You will have to adapt all of these crawler implementations to your exact setup. However they may give you a good starting points.
 
-* with curl/jq: <TBD SAMPLE HERE>
+* with curl/jq: TBD SAMPLE HERE
 * with ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
 * with python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
 
 
+
 # BACKUP
-
-
 
 
 ## Step-by-step Crawling Logic
