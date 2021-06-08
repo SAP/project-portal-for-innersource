@@ -54,7 +54,7 @@ npm start
 
 The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
 
-In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. For the full details on the crawling process see the [Crawling Documentation](CRAWLING.md).
+In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. To build your own crawler please review the [Crawling Documentation](CRAWLING.md).
 
 ![Crawling InnerSource projects](ecosystem.png)
 
