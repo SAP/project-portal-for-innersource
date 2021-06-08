@@ -1,6 +1,6 @@
 # Crawling
 
-The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](../repos.json) file with mock data for testing and developing purposes, which shows the overall structure of that data.
+The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](./repos.json) file with mock data for testing and developing purposes, which shows the overall structure of that data.
 
 In a productive environment, you will likely need to run your own crawler to populate `repos.json` with the InnerSource projects that you want to show in your portal.
 
@@ -16,7 +16,7 @@ To get the portal to work, you need to implement at least step (1). Steps (2) an
 
 ### Step 1: (Required) Basic Project Information from GitHub
 
-The [repos.json](../repos.json) file contains an array of objects. Each object represents a **project** that you want to display in the portal.
+The [repos.json](./repos.json) file contains an array of objects. Each object represents a **project** that you want to display in the portal.
 
 The basic structure of each project object is:
 
@@ -58,7 +58,7 @@ You can write the API response to `repos.json` as is, as the field names above a
 
 For a richer portal experience, you can add extended project information that is available via further GitHub API calls.
 
-For each project retrieved in step (1), add a key ```_InnerSourceMetadata``` with an object containing the following metadata about the project:
+For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an object containing the following metadata about the project:
 
 * `topics` (Optional): Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
 * `participation`: Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it. with the key `participation`
@@ -66,10 +66,10 @@ For each project retrieved in step (1), add a key ```_InnerSourceMetadata``` wit
 
 ### Step 3: (Optional) Custom Data
 
-You can customize the portal further with the following properties, that you can add to the ```_InnerSourceMetadata``` object explained in step (2):
+You can customize the portal further with the following properties, that you can add to the `_InnerSourceMetadata` object explained in step (2):
 
 * `score` (Optional): Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Add it with the key `score`.
-* Check if there is a file ```innersource.json``` in the repository and add all keys from that file directly below ```_InnerSourceMetadata```. See below for further about the custom `innersource.json` file.
+* Check if there is a file `innersource.json in the repository and add all keys from that file directly below `_InnerSourceMetadata. See below for further about the custom `innersource.json` file.
 
 #### Extra project metadata via `innersource.json`
 
