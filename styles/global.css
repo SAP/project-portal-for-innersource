@@ -143,9 +143,11 @@ td > div {
 }
 
 /* make score images same size as other icons */
-.score img {
+.score img,
+div.score {
   width: 2rem;
   min-height: 2rem;
+  line-height: 2rem;
 }
 
 /* programming language indicator */

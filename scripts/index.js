@@ -209,7 +209,10 @@ function getParticipationColor (iValue) {
 
 // creates an HTMl-based heatmap for the current week and the previous 12 weeks from participation stats
 function createParticipationChart (oRepo) {
-	let aParticipation = oRepo._InnerSourceMetadata.participation;
+	let aParticipation = oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.participation;
+	if (!aParticipation) {
+		return "N/A";
+	}
 	const aPrevious12Weeks = aParticipation.slice(aParticipation.length - 13, aParticipation.length - 1).reverse();
 
 	// this week
@@ -313,7 +316,7 @@ function showModal (vRepoId, oEvent) {
 		"repoURL": oRepo.html_url,
 		"repoTitle": oRepo.owner.login + "/" + oRepo.name,
 		"description": sDescription,
-		"topics": oRepo._InnerSourceMetadata.topics,
+		"topics": oRepo._InnerSourceMetadata && oRepo._InnerSourceMetadata.topics,
 		"stars": oRepo.stargazers_count,
 		"issues": oRepo.open_issues_count,
 		"forks": oRepo.forks_count,
@@ -473,7 +476,7 @@ function sort (sParam) {
 	if (["name", "full_name"].includes(sParam)) {
 		// sort alphabetically
 		aResult = window._globals.sortFilterSearchRepos.sort((a, b) => (b[sParam] < a[sParam] ? 1 : -1));
-	} else if (sParam === "score") {
+	} else if (sParam === "score" && window._globals.sortFilterSearchRepos[0]["_InnerSourceMetadata"]) {
 		// sort by InnerSource score
 		aResult = window._globals.sortFilterSearchRepos.sort(
 			(a, b) =>
@@ -536,7 +539,7 @@ function search(sParam) {
 			// description
 			(repo.description && repo.description.toLowerCase().includes(sLowerCaseParam)) ||
 			// InnerSource metadata
-			(repo._InnerSourceMetadata &&
+			repo._InnerSourceMetadata && (
 				// topics
 				repo._InnerSourceMetadata.topics &&
 				repo._InnerSourceMetadata.topics.join(" ").toLowerCase().includes(sLowerCaseParam) ||
