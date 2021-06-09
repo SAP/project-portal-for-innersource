@@ -1,6 +1,6 @@
 # Listing your Project in the Project Portal for InnerSource
 
-Adding your project to this portal is as easy as adding a topic to your repo - see step (1). To customize the information about your project that is displayed in the portal even further, you can optionally consider adding a `innersource.json` file - see step (2).
+Adding your project to this portal is as easy as adding a topic to your repo. To customize the information about your project that is displayed in the portal, you can optionally add a `innersource.json` file.
 
 ## Step 1: Setting the topic `inner-source`
 

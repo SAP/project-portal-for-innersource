@@ -68,7 +68,7 @@ For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an
 
 You can customize the portal further with the following properties, that you can add to the `_InnerSourceMetadata` object explained in step (2):
 
-* `score` (Optional): Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Add it with the key `score`.
+* `score` (Optional): Calculate the [Repository Activity Score](https://patterns.innersourcecommons.org/p/repository-activity-score) to define a meaningful order for the projects. Add it with the key `score`.
 * Check if there is a file `innersource.json` in the repository and add all keys from that file directly below `_InnerSourceMetadata`. For further details review the [syntax definition](LISTING.md#syntax-definition-of-innersourcejson) of `innersource.json`.
 
 ## Reference Implementations
