@@ -22,6 +22,11 @@ Just open an issue, describe how to reproduce the bug and what you would expect 
 
 5. Once the change has been approved and merged, we will inform you in a comment.
 
+## Contributing a crawler
+
+Have a look at the [reference implementations](docs/CRAWLING.md#reference-implementations) for crawling the InnerSource repositories and check if one of the existing solutions works well for you.
+If you are using a different programming language or source code management system you can implement your own crawler and list it there for others to use.
+
 ## Developer Certificate of Origin (DCO)
 
 Due to legal reasons, contributors will be asked to accept a DCO before they submit the first pull request to this projects, this happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).

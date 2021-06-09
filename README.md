@@ -57,9 +57,13 @@ In a productive environment, consider adding an automated crawler script that fe
 
 ![Crawling InnerSource projects](docs/ecosystem.png)
 
+## Listing Projects
+
+Adding your project to this portal is as easy as adding the `inner-source` topic to your repo. To customize the information about your project that is displayed in the portal, you can optionally add a `innersource.json` file. To see all available options please check the [Listing Documentation](docs/LISTING.md).
+
 ## Limitations
 
-The portal focuses on InnerSource projects located in one or more GitHub enterprise instances. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the `repos.json` file.  
+The portal focuses on InnerSource projects located in GitHub. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the `repos.json` file.  
 
 ## Contributing
 
