@@ -79,5 +79,5 @@ You will have to adapt all of these crawler implementations to your exact setup.
 ``` sh
 curl -u <username>:<oauth_token> https://api.github.com/orgs/<org>/repos?type=public > repos.json
 ```
-* Crawler Implementation with Ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
-* Crawler Implementation with Python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
+* Crawler implementation with Ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
+* Crawler implementation with Python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
