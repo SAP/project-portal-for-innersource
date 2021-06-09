@@ -63,7 +63,7 @@ For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an
 * `topics`: Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
 * `participation`: Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation`. A visualization of the participation stats for the previous 12 months is now shown on the project's detail page.
 * `guidelines` (Optional): Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button for this project will link to this file instead of the repository root.
-  
+
 ### Step 3: (Optional) Custom Data
 
 You can customize the portal further with the following properties, that you can add to the `_InnerSourceMetadata` object explained in step (2):
@@ -75,9 +75,9 @@ You can customize the portal further with the following properties, that you can
 
 You will have to adapt all of these crawler implementations to your exact setup. However they may give you a good starting points.
 
-* Plain API call to query all public repos of a GitHub organization and store it in a local file (oauth token with permission `repos>public_repo` required):
+* A plain GitHub API with some post-processing in [jq](https://stedolan.github.io/jq/). This call will query all repos in a GitHub organization with topic `inner-source` and store it in a local file ([oauth token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) with permission `repo` required):
 ``` sh
-curl -u <username>:<oauth_token> https://api.github.com/orgs/<org>/repos?type=public > repos.json
+curl -u <username>:<oauth_token> https://api.github.com/search/repositories?q=org:<org>+topic:inner-source | jq '.items' > repos.json
 ```
 * Crawler Implementation with Ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
 * Crawler Implementation with Python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
