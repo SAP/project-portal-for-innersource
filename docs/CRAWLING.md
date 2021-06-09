@@ -75,6 +75,9 @@ You can customize the portal further with the following properties, that you can
 
 You will have to adapt all of these crawler implementations to your exact setup. However they may give you a good starting points.
 
-* with curl/jq: TBD SAMPLE HERE
-* with ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
-* with python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
+* Plain API call to query all public repos of a GitHub organization and store it in a local file (oauth token with permission `repos>public_repo` required):
+``` sh
+curl -u <username>:<oauth_token> https://api.github.com/orgs/<org>/repos?type=public > repos.json
+```
+* Crawler Implementation with Ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
+* Crawler Implementation with Python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
