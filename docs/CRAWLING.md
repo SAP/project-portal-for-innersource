@@ -41,7 +41,7 @@ The basic structure of each project object is:
     "login": "Sol",
     "avatar_url": "./images/demo/Sol.png"
   }
-},
+}
 ```
 
 To retrieve this information from your GitHub instance, query the [GitHub Search API](https://developer.github.com/v3/search/) for all projects with the topic `inner-source`.
