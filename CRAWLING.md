@@ -1,14 +1,14 @@
 # Crawling
 
-The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](./repos.json) file with mock data for testing and developing purposes, which shows the overall structure of that data.
+The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](./repos.json) file with mock data, which shows the overall structure of that data.
 
 In a productive environment, you will likely need to run your own crawler to populate `repos.json` with the InnerSource projects that you want to show in your portal.
 
 The picture below shows the relationship between crawler and portal.
 
-![Crawling InnerSource projects](ecosystem.png)
-
 In the rest of this document we explain the data structure of `repos.json` and how you would populate it with your own crawler. You will also find [Crawler reference implementations](#reference-implementations) that you can use as starting points for your own crawler.
+
+![Crawling InnerSource projects](ecosystem.png)
 
 ## Step-by-step Crawling Logic
 
@@ -44,7 +44,7 @@ The basic structure of each project object is:
 },
 ```
 
-To retrieve this information from your GitHub instance, make query the [GitHub Search API](https://developer.github.com/v3/search/) for all projects with the topic `inner-source`.
+To retrieve this information from your GitHub instance, query the [GitHub Search API](https://developer.github.com/v3/search/) for all projects with the topic `inner-source`.
 
    ```
    ?q=topic:inner-source
