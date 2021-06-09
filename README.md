@@ -1,7 +1,7 @@
 # Project Portal for InnerSource [![REUSE status](https://api.reuse.software/badge/github.com/SAP/project-portal-for-innersource)](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource)
 
 A reference implementation to list all InnerSource projects of a company in an interactive and easy to use way.
-It can be used as a template for implementing the [InnerSource portal pattern](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
+It can be used as a template for implementing the [InnerSource Portal pattern](https://patterns.innersourcecommons.org/p/innersource-portal) by the [InnerSource Commons community](http://innersourcecommons.org/).
 
 ## Demo
 
@@ -12,7 +12,7 @@ The portal can also be seen in action at the InnerSourceCommons Fall Summit 2020
 ## Description
 
 Each tile in the project portal represents an InnerSource project. The list of projects can be filtered by programming language, sorted by various KPIs, and searched using a keyword.
-Filter and search criteria are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md).
+Filter and search criteria are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://patterns.innersourcecommons.org/p/repository-activity-score).
 
 ![Overview](docs/overview.png)
 
