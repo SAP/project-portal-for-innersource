@@ -10,7 +10,7 @@ In your GitHub instance, add the topic `inner-source` to your repository by clic
 
 ## Step 2: (Optional) Adding an `innersource.json` file
 
-To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository. For further details review the [syntax definition](LISTING.md#extra-project-metadata) of `innersource.json` below.
+To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository. For further details review the [syntax definition](LISTING.md#syntax-definition-of-innersourcejson) of `innersource.json` below.
 
 ## Syntax Definition of `innersource.json`
 
