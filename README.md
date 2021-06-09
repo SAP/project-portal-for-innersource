@@ -3,7 +3,6 @@
 A reference implementation to list all InnerSource projects of a company in an interactive and easy to use way.
 It can be used as a template for implementing the [InnerSource portal pattern](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
 
-
 ## Demo
 
 A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/index.html).
@@ -13,14 +12,14 @@ The portal can also be seen in action at the InnerSourceCommons Fall Summit 2020
 ## Description
 
 Each tile in the project portal represents an InnerSource project. The list of projects can be filtered by programming language, sorted by various KPIs, and searched using a keyword.
-Filter and search criterias are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md).
+Filter and search criteria are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md).
 
-![Overview](overview.png)
+![Overview](docs/overview.png)
 
 Clicking on the repository URL or the contribute button will take you directly to the source repository for GitHub projects.
 Clicking on any other area on the tile will open the details popup with more information on the project.
 
-![Details](details.png)
+![Details](docs/details.png)
 
 The "+" button in the lower right will explain how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
 
@@ -54,13 +53,13 @@ npm start
 
 The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
 
-In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. To build your own crawler please review the [Crawling Documentation](CRAWLING.md).
+In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. To build your own crawler please review the [Crawling Documentation](docs/CRAWLING.md).
 
-![Crawling InnerSource projects](ecosystem.png)
+![Crawling InnerSource projects](docs/ecosystem.png)
 
 ## Limitations
 
-The portal focuses on InnerSource projects located in one or more GitHub enterprise instances. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the ```repos.json``` file.  
+The portal focuses on InnerSource projects located in one or more GitHub enterprise instances. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the `repos.json` file.  
 
 ## Contributing
 

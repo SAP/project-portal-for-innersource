@@ -1,6 +1,6 @@
 # Crawling
 
-The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](./repos.json) file with mock data, which shows the overall structure of that data.
+The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](../repos.json) file with mock data, which shows the overall structure of that data.
 
 In a productive environment, you will likely need to run your own crawler to populate `repos.json` with the InnerSource projects that you want to show in your portal.
 
@@ -16,7 +16,7 @@ To get the portal to work, you need to implement at least step (1). Steps (2) an
 
 ### Step 1: (Required) Basic Project Information from GitHub
 
-The [repos.json](./repos.json) file contains an array of objects. Each object represents a **project** that you want to display in the portal.
+The [repos.json](../repos.json) file contains an array of objects. Each object represents a **project** that you want to display in the portal.
 
 The basic structure of each project object is:
 
