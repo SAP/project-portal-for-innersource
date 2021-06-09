@@ -69,46 +69,7 @@ For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an
 You can customize the portal further with the following properties, that you can add to the `_InnerSourceMetadata` object explained in step (2):
 
 * `score` (Optional): Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Add it with the key `score`.
-* Check if there is a file `innersource.json in the repository and add all keys from that file directly below `_InnerSourceMetadata. See below for further about the custom `innersource.json` file.
-
-#### Extra project metadata via `innersource.json`
-
-To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository with the following format:
-
-``` json
-{
- "title": "Readable Project Name (optional)",
- "motivation": "A short statement why this project is InnerSource and why contributors should care (optional)",
- "contributions": [
-   "List",
-   "Of",
-   "Requested",
-   "Contribtions",
-   "Like",
-   "Bugfixes",
-   "Features",
-   "Infrastructure",
-   "Documentation",
-   "..."
- ],
- "skills": [
-   "Skills",
-   "Required",
-   "To",
-   "Contribute",
-   "Like",
-   "Node.js",
-   "Java",
-   "C++",
-   "..."
- ],
- "logo": "path/to/your/project-logo.png (optional)",
- "docs": "http://url/to/project/documentation (optional)",
- "language": "JavaScript (optional)"
-}
-```
-
-> *Note:* The property `language` overrides GitHub's [programming language detection](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-languages). Supported values are all entries of type `programming` from the [linguist language list](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+* Check if there is a file `innersource.json` in the repository and add all keys from that file directly below `_InnerSourceMetadata`. For further details review the [syntax definition](LISTING.md#extra-project-metadata) of `innersource.json`.
 
 ## Reference Implementations
 
