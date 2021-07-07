@@ -66,10 +66,10 @@ For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an
   
 ### Step 3: (Optional) Custom Data
 
-You can customize the portal further with the following properties, that you can add to the `_InnerSourceMetadata` object explained in step (2):
+You can customize the portal further by adding some of the following properties to the `_InnerSourceMetadata` object explained in step (2):
 
 * `score`: Calculate the [Repository Activity Score](https://patterns.innersourcecommons.org/p/repository-activity-score) to define a meaningful default order for the projects. Add it with the key `score`.
-* Check if there is a file `innersource.json` in the repository and add all keys from that file directly below `_InnerSourceMetadata`. For further details review the [syntax definition](LISTING.md#syntax-definition-of-innersourcejson) of `innersource.json`.
+* `title`/`motivation`/`contributions`/`skills`/`logo`/`docs`/`language`: Check if the repo contains an `innersource.json` file and add all keys from that file directly below `_InnerSourceMetadata`. For further details review the [syntax definition](LISTING.md#syntax-definition-of-innersourcejson) of `innersource.json`.
 
 ## Reference Implementations
 
