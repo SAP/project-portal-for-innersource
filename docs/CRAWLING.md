@@ -63,8 +63,6 @@ For each project retrieved in step (1), add a key `_InnerSourceMetadata` with an
 * `topics`: Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
 * `participation`: Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation`. A visualization of the participation stats for the previous 12 months is now shown on the project's detail page.
 * `guidelines`: Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button for this project will link to this file instead of the repository root.
-
-* `guidelines`: Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button for this project will link to this file instead of the repository root.
   
 ### Step 3: (Optional) Custom Data
 
