@@ -7,7 +7,9 @@ It can be used as a template for implementing the [InnerSource Portal pattern](h
 
 A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/index.html).
 
-The portal can also be seen in action at the InnerSource Commons Fall Summit 2020 session [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo), and, more recently, at the July 2021 InnerSource Commons Community Call [InnerSource & Discoverability](https://youtu.be/Yi2iVMa-gxM).
+The portal can also be seen in action in these recordings:
+- [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo) - InnerSource Commons Fall Summit 2020 session
+- [InnerSource & Discoverability](https://youtu.be/Yi2iVMa-gxM) - July 2021 InnerSource Commons Community Call
 
 ## Description
 
