@@ -81,3 +81,4 @@ curl -u <username>:<oauth_token> https://api.github.com/search/repositories?q=or
 ```
 * Crawler implementation with Ruby: [spier/innersource-crawler-ruby](https://github.com/spier/innersource-crawler-ruby)
 * Crawler implementation with Python: [zkoppert/innersource-crawler](https://github.com/zkoppert/innersource-crawler)
+* Crawler implementation for [AWS CodeCommit](https://aws.amazon.com/codecommit/): [aws-samples/codecommit-crawler-innersource](https://github.com/aws-samples/codecommit-crawler-innersource)
