@@ -23,7 +23,7 @@ Clicking on any other area on the tile will open the details popup with more inf
 
 ![Details](docs/details.png)
 
-The "+" button in the lower right will explain how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
+The "+" button in the lower right explains how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
 
 ## Requirements
 
