@@ -51,6 +51,23 @@ npm start
 
 4. Start developing!
 
+## Running locally via Docker Compose
+
+Presuming you already have [Docker or Docker Desktop installed](https://docs.docker.com/get-docker/), simply:
+
+1. `cd` to the root of this repo
+2. Run `docker compose up`
+
+You can then access the service at http://localhost:8080
+
+### Rebuilding and testing locally via Docker Compose
+
+The first time you run `docker compose up`, it will build the image for you, but if you make code changes in this repo and want to test them, you need to rebuild the Docker image via these steps:
+
+1. If running, stop the server by typing `ctrl-c` in the terminal where it is running
+2. Run `docker compose build`
+3. Type `docker compose up` to relaunch
+
 ## Configuration & Crawling
 
 The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
