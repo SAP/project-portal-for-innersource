@@ -535,7 +535,7 @@ function search(sParam) {
 	let oResult = window._globals.allRepos.filter(
 		(repo) =>
 			// name
-			repo.name.toLowerCase().includes(sLowerCaseParam) ||
+			repo.full_name.toLowerCase().includes(sLowerCaseParam) ||
 			// description
 			(repo.description && repo.description.toLowerCase().includes(sLowerCaseParam)) ||
 			// InnerSource metadata
