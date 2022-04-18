@@ -44,7 +44,7 @@ The basic structure of each project object is:
 }
 ```
 
-To retrieve this information from your GitHub instance, query the [GitHub Search API](https://developer.github.com/v3/search/) for all projects with the topic `inner-source`.
+To retrieve this information from your GitHub instance, query the [GitHub Search API](https://docs.github.com/en/rest/reference/search) for all projects with the topic `inner-source`.
 
    ```
    ?q=topic:inner-source
