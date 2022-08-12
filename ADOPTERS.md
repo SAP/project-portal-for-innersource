@@ -1,6 +1,7 @@
 # Adopters
 
-You can find here a list of organizations and/or or projects that either use, or have used, the _SAP Project Portal for InnerSource_, either directly or as a reference.
+The organizations and projects below either use, or have used, the _SAP Project Portal for InnerSource_. 
+These adopters use the project either directly or as a reference for their own implementation.
 
 | Organization | Details                                                                   | References                                                |
 | ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------- |
