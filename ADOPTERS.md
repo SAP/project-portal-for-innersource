@@ -2,11 +2,14 @@
 
 You can find here a list of organizations and/or or projects that either use, or have used, the _SAP Project Portal for InnerSource_, either directly or as a reference.
 
-| Organization | Details | References |
-| ------------ | ------- | ---------- |
-|              |         |            |
+| Organization | Details                                                                   | References                                                |
+| ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [SAP][sap]   | SAP is using this portal internally for discovery of InnerSource Projects | See the Demo section on the [README.md](./README.md) file |
+| Your org...  | could be listed...                                                        | here!                                                     |
 
-## Contribute
+[sap]: https://www.sap.com/
+
+## How to update the Adopters list
 
 If you would like to add and organization, check our overall contribution guidelines ([CONTRIBUTING.md](./CONTRIBUTING.md)) and send us a pull request (preferred) or create an issue with the required information:
 
