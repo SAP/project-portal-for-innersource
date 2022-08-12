@@ -11,7 +11,7 @@ You can find here a list of organizations and/or or projects that either use, or
 
 ## How to update the Adopters list
 
-If you would like to add and organization, check our overall contribution guidelines ([CONTRIBUTING.md](./CONTRIBUTING.md)) and send us a pull request (preferred) or create an issue with the required information:
+If you would like to add an organization, check our [contribution guidelines](./CONTRIBUTING.md) and send us a pull request (preferred). Alternatively create an issue with the required information:
 
 * **Organization:** Name and link to the organization
 * **Details:** Whatever you want to share with respect to how it is being used
