@@ -5,8 +5,8 @@ These adopters use the project either directly or as a reference for their own i
 
 | Organization | Details                                                                   | References                                                |
 | ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [SAP][sap]   | SAP is using this portal internally for discovery of InnerSource Projects | See the Demo section on the [README.md](./README.md) file |
 | [NASA](https://github.com/nasa)  | Portal was used as a starting point for a working prototype. Goal was to improve InnerSource discovery on the largest of several internal code platforms. | No public description of this that I know of. However, the author of this contribution ran it 2020-2021. |
+| [SAP][sap]   | SAP is using this portal internally for discovery of InnerSource Projects | See the Demo section on the [README.md](./README.md) file |
 | Your org...  | could be listed...                                                        | here!                                                     |
 
 [sap]: https://www.sap.com/
