@@ -1,28 +1,29 @@
 # Project Portal for InnerSource [![REUSE status](https://api.reuse.software/badge/github.com/SAP/project-portal-for-innersource)](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource)
 
 A reference implementation to list all InnerSource projects of a company in an interactive and easy to use way.
-It can be used as a template for implementing the [InnerSource portal pattern](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) by the [InnerSource Commons community](http://innersourcecommons.org/).
+It can be used as a template for implementing the [InnerSource Portal pattern](https://patterns.innersourcecommons.org/p/innersource-portal) by the [InnerSource Commons community](http://innersourcecommons.org/).
 
-
-## Demo 
+## Demo
 
 A running instance of the portal using mock data can be found [here](https://sap.github.io/project-portal-for-innersource/index.html).
 
-The portal can also be seen in action at the InnerSourceCommons Fall Summit 2020 session [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo).
+The portal can also be seen in action in these recordings:
+- [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo) - InnerSource Commons Fall Summit 2020 session
+- [InnerSource & Discoverability](https://youtu.be/Yi2iVMa-gxM) - July 2021 InnerSource Commons Community Call
 
 ## Description
 
 Each tile in the project portal represents an InnerSource project. The list of projects can be filtered by programming language, sorted by various KPIs, and searched using a keyword.
-Filter and search criterias are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md).
+Filter and search criteria are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://patterns.innersourcecommons.org/p/repository-activity-score).
 
-![Overview](overview.png)
+![Overview](docs/overview.png)
 
 Clicking on the repository URL or the contribute button will take you directly to the source repository for GitHub projects.
 Clicking on any other area on the tile will open the details popup with more information on the project.
 
-![Details](details.png)
+![Details](docs/details.png)
 
-The "+" button in the lower right will explain how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
+The "+" button in the lower right explains how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
 
 ## Requirements
 
@@ -31,7 +32,7 @@ Install [nodejs](https://nodejs.org/en/).
 ## Installation
 
 1. Fork and clone this repository
-  
+
 2. Install nodejs dependencies
 
 ``` shell script
@@ -50,44 +51,38 @@ npm start
 
 4. Start developing!
 
-## Configuration
+## Running locally via Docker Compose
 
-The portal uses a static ```repos.json``` file with mock data for testing and developing purposes. In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture:
+Presuming you already have [Docker or Docker Desktop installed](https://docs.docker.com/get-docker/), simply:
 
-![Crawling InnerSource projects](ecosystem.png)
+1. `cd` to the root of this repo
+2. Run `docker compose up`
 
-To do so, apply the following steps:
+You can then access the service at http://localhost:8080
 
-1. Crawl all projects with the topic `inner-source` in your GitHub instance using the [GitHub search API](https://developer.github.com/v3/search/):
+### Rebuilding and testing locally via Docker Compose
 
-   ```
-   ?q=topic:inner-source
-   ```
+The first time you run `docker compose up`, it will build the image for you, but if you make code changes in this repo and want to test them, you need to rebuild the Docker image via these steps:
 
-   The API returns a list of projects with essential information like name, avatar, description, and statistics that we can enrich with additional fields. 
-   
-   > *Note:* You can optionally limit the result set by adding `is:public` or `is:private` to the query, depending on how InnerSource repositories are characterized in your environment. 
+1. If running, stop the server by typing `ctrl-c` in the terminal where it is running
+2. Run `docker compose build`
+3. Type `docker compose up` to relaunch
 
-2. For each resulting project add a key ```_InnerSourceMetadata``` to the result from the GitHub API call and fill it with additional metadata about the project:
+## Configuration & Crawling
 
-   * Check if there is a file ```innersource.json``` in the repository and add all keys directly below ```_InnerSourceMetadata```.
+The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
 
-   * Query GitHub for the [weekly commit count](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-the-weekly-commit-count) (subset "all") and add it with the key `participation` 
+In a productive environment, consider adding an automated crawler script that fetches all InnerSource projects as outlined in the following picture. To build your own crawler please review the [Crawling Documentation](docs/CRAWLING.md).
 
-   * (Optional) Check if there are contribution guidelines and add the file name with the key `guidelines` (e.g. `CONTRIBUTING.md`). If specified, the *Contribute* button will link directly to the file instead of the repository root.
-   
-   * (Optional) Query GitHub [topics](https://docs.github.com/en/rest/reference/repos#get-all-repository-topics) and add the array of topics with the key `topics` for each repo to allow searching projects by topic and displaying them on the detail popup.
+![Crawling InnerSource projects](docs/ecosystem.png)
 
-   * (Optional) Calculate the [Repository Activity Score](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/repository-activity-score.md) to define a meaningful order for the projects. Sort entries by score descending. Add it with the key `score`
+## Listing Projects
 
-3. Write the resulting list of projects with all metadata to the file ```repos.json``` to serve all projects in the portal.
-
-With this approach, projects can self-register to the portal by adding the ```inner-source``` topic to their repository and specifying additional metadata inside an ```innersource.json``` file.
-For more information about this file, see [Listing Project in the Project Portal for InnerSource](CONTRIBUTING.md#listing-project-in-the-project-portal-for-innersource)
+Adding your project to this portal is as easy as adding the `inner-source` topic to your repo. To customize the information about your project that is displayed in the portal, you can optionally add a `innersource.json` file. To see all available options please check the [Listing Documentation](docs/LISTING.md).
 
 ## Limitations
 
-The portal focuses on InnerSource projects located in one or more GitHub enterprise instances. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the ```repos.json``` file.  
+The portal focuses on InnerSource projects located in GitHub. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the `repos.json` file.  
 
 ## Contributing
 

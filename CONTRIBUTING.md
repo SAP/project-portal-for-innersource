@@ -2,9 +2,9 @@
 
 ## General Remarks
 
-This project serves as a template for implementing the InnerSource Commons [InnerSource portal](https://github.com/InnerSourceCommons/InnerSourcePatterns/blob/master/patterns/2-structured/innersource-portal.md) pattern.
-Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying [InnerSource principles](https://innersourcecommons.org/resources/books/adoptinginnersource/). 
-Changes should be made in a generic and extensible way, so that all stakeholders can benefit from the improvment and apply it to their portal instance.
+This project serves as a template for implementing the InnerSource Commons [InnerSource Portal](https://patterns.innersourcecommons.org/p/innersource-portal) pattern.
+Any change to improve and advance the portal is welcome. Please note that the portal should be able to display any kind of InnerSource project at any company applying [InnerSource principles](https://innersourcecommons.org/resources/books/adoptinginnersource/).
+Changes should be made in a generic and extensible way, so that all stakeholders can benefit from the improvement and apply it to their portal instance.
 
 ## Found a bug?
 
@@ -22,49 +22,15 @@ Just open an issue, describe how to reproduce the bug and what you would expect 
 
 5. Once the change has been approved and merged, we will inform you in a comment.
 
-## Listing Project in the Project Portal for InnerSource
+## Contributing a crawler
 
-1. In your GitHub enterprise instance, add the topic `inner-source` to your repository by clicking on the link "manage topics" below the repository description:
-`https://github.yourcompany.corp/<organization>/<repository>`
- 
-> **Note:** The portal assumes that a crawler script frequently collects all repositories marked as InnerSource inside your company and compiles a ```repos.json``` file automatically. All data inside this file can be compiled by querying the [GitHub API](https://developer.github.com/v3/) and loading the additional metadata defined in ```innersource.json```. Check the section [Configuration in the README](README.md#configuration) to learn more about crawling InnerSource projects .
- 
-2. (Optional) To provide more details or add a custom logo, add an `innersource.json` file in the root of your repository with the following format:
+Have a look at the [reference implementations](docs/CRAWLING.md#reference-implementations) for crawling the InnerSource repositories and check if one of the existing solutions works well for you.
+If you are using a different programming language or source code management system you can implement your own crawler and list it there for others to use.
 
-``` json
-{
-  "title": "Readable Project Name (optional)",
-  "motivation": "A short statement why this project is InnerSource and why contributors should care (optional)",
-  "contributions": [
-    "List",
-    "Of",
-    "Requested",
-    "Contribtions",
-    "Like",
-    "Bugfixes",
-    "Features",
-    "Infrastructure",
-    "Documentation",
-    "..."
-  ],
-  "skills": [
-    "Skills",
-    "Required",
-    "To",
-    "Contribute",
-    "Like",
-    "Node.js",
-    "Java",
-    "C++",
-    "..."
-  ],
-  "logo": "path/to/your/project-logo.png (optional)",
-  "docs": "http://url/to/project/documentation (optional)",
-  "language": "JavaScript (optional)"
-}
-``` 
+## Contributing by adding Adopters
 
-> *Note:* The property `language` overrides GitHub's [programming language detection](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-languages). Supported values are all entries of type `programming` from the [linguist language list](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+If your organization is using this project, or have used it as a reference, consider adding it as an _adopter_.  
+Follow the instructions on the file [ADOPTERS.md](./ADOPTERS.md).
 
 ## Developer Certificate of Origin (DCO)
 
