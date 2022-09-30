@@ -100,4 +100,9 @@ We use the following open source frameworks to create the portal:
 
 ## Acknowledgements
 
-Thanks to [InnerSourceCommons Pattern Group](https://github.com/InnerSourceCommons/InnerSourcePatterns) for the feedback and great support.
+Thank you very much for your internal and external contributions to make this project work:
+* [Murugan Varun](https://github.com/varunzxzx)
+* [Harish B.](https://github.com/harish-b-0)
+* [Michael Graf](https://github.com/michadelic)
+
+Thanks also to [InnerSourceCommons Pattern Group](https://github.com/InnerSourceCommons/InnerSourcePatterns) for the feedback and great support.
