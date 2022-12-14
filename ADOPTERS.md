@@ -5,10 +5,13 @@ These adopters use the project either directly or as a reference for their own i
 
 | Organization | Details                                                                   | References                                                |
 | ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [Mercado Libre][Meli]   | Mercado Libre is using this portal internally for discovery of InnerSource Projects | See the [known instances][known_instances] section of the Portal Pattern |
 | [NASA](https://github.com/nasa)  | Portal was used as a starting point for a working prototype. Goal was to improve InnerSource discovery on the largest of several internal code platforms. Main feature addition was click through screens where users acknowledged several statements to be true. | No public description. However, the author of this contribution ran it 2020-2021. |
 | [SAP][sap]   | SAP is using this portal internally for discovery of InnerSource Projects | See the Demo section on the [README.md](./README.md) file |
 | Your org...  | could be listed...                                                        | here!                                                     |
 
+[known_instances]: https://patterns.innersourcecommons.org/p/innersource-portal#known-instances
+[Meli]: https://www.mercadolibre.com.ar/institucional
 [sap]: https://www.sap.com/
 
 ## How to update the Adopters list
