@@ -10,6 +10,7 @@ These adopters use the project either directly or as a reference for their own i
 | [Mercedes-Benz] | Mercedes-Benz implemented the portal internally | see the section "One problem: Visibility of Inner Source projects" section at [Mercedes-Benz Tech Innovation to Sponsor InnerSource Commons][mercedes-reference] |
 | [NASA](https://github.com/nasa)  | Portal was used as a starting point for a working prototype. Goal was to improve InnerSource discovery on the largest of several internal code platforms. Main feature addition was click through screens where users acknowledged several statements to be true. | No public description. However, the author of this contribution ran it 2020-2021. |
 | [SAP][sap]   | SAP is using this portal internally for discovery of InnerSource Projects | See the Demo section on the [README.md](./README.md) file |
+| [Schneider Electric][se] | Portal is used internally to discover InnerSource Projects based on different criterias | No public reference yet.
 | Your org...  | could be listed...                                                        | here!                                                     |
 
 [known_instances]: https://patterns.innersourcecommons.org/p/innersource-portal#known-instances
@@ -19,6 +20,7 @@ These adopters use the project either directly or as a reference for their own i
 [Mercedes-Benz]: https://www.mercedes-benz.com/en/
 [mercedes-reference]: https://opensource.mercedes-benz.com/news/sponsor_innersource_commonsoss/
 [sap]: https://www.sap.com/
+[se]: https://www.se.com/
 
 ## How to update the Adopters list
 
