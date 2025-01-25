@@ -593,3 +593,133 @@ function display (sParam) {
 	window.document.getElementById(sParam !== "list" ? "cards" : "list").style.display = "block";
 	window.document.getElementById(sParam !== "list" ? "list" : "cards").style.setProperty("display", "none", "important");
 }
+
+async function fetch_repos(url) {
+	let response = await fetch(url);
+	let data = await response.json();
+	return data;
+}
+
+function generate_schema(data) {
+	function collect_unique_keys(obj, path = "") {
+		/*
+		* recursevily collects all unique keys
+		* this is necessary for converting to csv file
+		*/
+		for (const key in obj) {
+			const newPath = path ? `${path}.${key}` : key;
+			if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+				collect_unique_keys(obj[key], newPath);
+			} else {
+				allKeys[newPath] = Array.isArray(obj[key]) ? ["hs"] : "hs"; // hiee
+			}
+		}
+	}
+
+	function key_finalizer(obj, path) {
+		/*
+		* This function creates the template json object
+		* it splits the path by '.' and checks if the corresponding key exists
+		* if not, it creates a new object
+		* at the end it returns the full template object
+		*/
+
+		path.split('.').reduce((acc, part, index, arr) => {
+			if (!acc[part]) {
+				acc[part] = index === arr.length - 1 ? obj[path] : {};
+			}
+			return acc[part];
+		}, template);
+	}
+
+	let allKeys = {};
+	let template = {};
+
+	data.forEach(item => collect_unique_keys(item));
+	Object.keys(allKeys).forEach(keyPath => key_finalizer(allKeys, keyPath));
+	return template;
+}
+
+async function repos_to_csv() {
+	/*
+	* this is the main method of csv download
+	* first it fetches the data, followed by generating the template of the json
+	*
+	* then it flattens the json object and extracts the keys
+	* and subsequently flattens the each entry of the json object
+	* for any entry, where there is no data on keys which exist in the template, it will be set to "nodata"
+	* at the end, it merges all and calls the download_csv_file function
+	*/
+	let data = await fetch_repos(`${window.location.origin}/repos.json`);
+	let template = generate_schema(data);
+
+	let csv_keys = Object.keys(flatten(template));
+	let csv_rows = [csv_keys.join(";")];
+
+	data.forEach(entry => {
+		let flattenedEntry = flatten(entry);
+		let row = csv_keys.map(key => (flattenedEntry[key] !== undefined ? flattenedEntry[key] : "nodata"));
+		csv_rows.push(row.join(";"));
+	});
+
+	let csv_content = csv_rows.join("\n");
+	download_csv_file(csv_content, "repos.csv");
+}
+
+
+const flatten = (object, path = '') =>
+	Object.entries(object).reduce((acc, [key, val]) => {
+		/*
+		* this function flattens the json object, which will be used to create the csv headers
+		* step by step, works like this
+		* if value is undefined -> return accumulator
+		* if path already exsits, append the current key to the current path, thus basically creating a nest .dot notation
+		* if the value is an array, don't seperate the value and flatten each one by itself, rather save array as one value
+		* if the value is an object (not date or regex) it checks if there are custom functions, if yes use that value, otherwise merge into accumulator
+		* if the value are strings / integers, directly assign and just return them
+		* source: https://gist.github.com/penguinboy/762197?permalink_comment_id=4058844   -> array unification was added
+		*/
+		if (val === undefined) return acc;
+		if (path) key = `${path}.${key}`;
+		if (Array.isArray(val)) {
+			acc[key] = `[${val.join(",")}]`;
+		} else if (typeof val === 'object' && val !== null && !(val instanceof Date) && !(val instanceof RegExp)) {
+			if (val !== val.valueOf()) {
+				return { ...acc, [key]: val.valueOf() };
+			}
+			return { ...acc, ...flatten(val, key) };
+		} else {
+			acc[key] = val;
+		}
+		return acc;
+	}, {});
+
+
+function description_formatting(entry) {
+	/*
+	* should there be the rare case where the semicolon char ';' appears in the description,
+	* then this function needs to be called, so that the seperation by the delimiter works
+	* use this in a for-loop
+	*/
+	let description = entry.description;
+	description = description.replace(';', ',');
+	return description;
+}
+
+function download_csv_file(csv, file_name) {
+	/*
+	* This function creates the downloadable object in the browser
+	* and triggers the download automatically once run
+	*/
+	let blob = new Blob([csv], { type: 'text/csv' });
+	let link = document.createElement('a');
+	if (link.download !== undefined) {
+		let url = URL.createObjectURL(blob);
+		link.setAttribute('href', url);
+		link.setAttribute('download', file_name);
+		link.style.visibility = 'hidden';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+}
