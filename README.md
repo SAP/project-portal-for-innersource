@@ -11,7 +11,7 @@ The portal can also be seen in action in these recordings:
 - [The Unexpected Path of Applying InnerSource Patterns](https://www.youtube.com/watch?v=6r9QOw9dcQo) - InnerSource Commons Fall Summit 2020 session
 - [InnerSource & Discoverability](https://youtu.be/Yi2iVMa-gxM) - July 2021 InnerSource Commons Community Call
 
-## Description
+## About this project
 
 Each tile in the project portal represents an InnerSource project. The list of projects can be filtered by programming language, sorted by various KPIs, and searched using a keyword.
 Filter and search criteria are persisted in the URL to allow sharing a subset of projects easily. Entries in the portal can be sorted by the [Repository Activity Score](https://patterns.innersourcecommons.org/p/repository-activity-score).
@@ -25,11 +25,11 @@ Clicking on any other area on the tile will open the details popup with more inf
 
 The "+" button in the lower right explains how to list new projects and how to create the InnerSource metadata file that contains additional information about the project.
 
-## Requirements
+## Requirements and Setup
 
 Install [nodejs](https://nodejs.org/en/).
 
-## Installation
+### Installation
 
 1. Fork and clone this repository
 
@@ -51,14 +51,14 @@ npm start
 
 4. Start developing!
 
-## Running locally via Docker Compose
+### Running locally via Docker Compose
 
-Presuming you already have [Docker or Docker Desktop installed](https://docs.docker.com/get-docker/), simply:
+Presuming you already have an environment capable of running Docker Compose (e.g.: with [Docker Desktop](https://docs.docker.com/get-docker/) or [Podman Desktop](https://podman.io/)), simply:
 
 1. `cd` to the root of this repo
 2. Run `docker compose up`
 
-You can then access the service at http://localhost:8080
+You can then access the service at <http://localhost:8080>.
 
 ### Rebuilding and testing locally via Docker Compose
 
@@ -68,7 +68,7 @@ The first time you run `docker compose up`, it will build the image for you, but
 2. Run `docker compose build`
 3. Type `docker compose up` to relaunch
 
-## Configuration & Crawling
+### Configuration & Crawling
 
 The repository metadata shown in this portal is read from a static `repos.json` file. This project contains a [repos.json](repos.json) file with mock data for testing and developing purposes.
 
@@ -76,7 +76,7 @@ In a productive environment, consider adding an automated crawler script that fe
 
 ![Crawling InnerSource projects](docs/ecosystem.png)
 
-## Listing Projects
+### Listing Projects
 
 Adding your project to this portal is as easy as adding the `inner-source` topic to your repo. To customize the information about your project that is displayed in the portal, you can optionally add a `innersource.json` file. To see all available options please check the [Listing Documentation](docs/LISTING.md).
 
@@ -84,10 +84,9 @@ Adding your project to this portal is as easy as adding the `inner-source` topic
 
 The portal focuses on InnerSource projects located in GitHub. Projects using other source code management systems can be displayed in the portal using similar APIs or by adding them manually to the `repos.json` file.  
 
-## Contributing
+## Support, Feedback, Contributing
 
-This project started as an InnerSource project at SAP and is now open source. Your contributions are welcome!
-Please check our [contributing guidelines](CONTRIBUTING.md) for more details.
+This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/project-portal-for-innersource/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Thirdparty
 
@@ -106,3 +105,11 @@ Thank you very much for your internal and external contributions to make this pr
 * [Michael Graf](https://github.com/michadelic)
 
 Thanks also to [InnerSourceCommons Pattern Group](https://github.com/InnerSourceCommons/InnerSourcePatterns) for the feedback and great support.
+
+## Code of Conduct
+
+We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its [Code of Conduct](https://github.com/SAP/.github/blob/main/CODE_OF_CONDUCT.md) at all times.
+
+## Licensing
+
+Copyright 2020-2025 SAP SE or an SAP affiliate company and Project Portal for InnerSource contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource).
