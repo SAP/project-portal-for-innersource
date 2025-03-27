@@ -1,6 +1,6 @@
 data
 repos.json
-lib/*.js
-lib/*.css
+lib/*
+!lib/README.md
 node_modules
 .idea
