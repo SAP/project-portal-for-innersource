@@ -112,4 +112,4 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Licensing
 
-Copyright 2020-2025 SAP SE or an SAP affiliate company and Project Portal for InnerSource contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource).
+Copyright 2020-2026 SAP SE or an SAP affiliate company and Project Portal for InnerSource contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/project-portal-for-innersource).
